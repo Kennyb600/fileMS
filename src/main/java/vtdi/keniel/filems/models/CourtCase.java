@@ -1,12 +1,22 @@
 package vtdi.keniel.filems.models;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Entity
 @Table(name = "CourtCases")
-public class CourtCase {
+// ADDED: implements Serializable
+public class CourtCase implements Serializable {
     
+    // ADDED: serialVersionUID
+    private static final long serialVersionUID = 1L;
+
+    // ADDED: Strict Rule Log4j Logger
+    private static final Logger logger = LogManager.getLogger(CourtCase.class);
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "case_id")
@@ -38,7 +48,10 @@ public class CourtCase {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
-    public CourtCase() {}
+    public CourtCase() {
+        // ADDED: Info log for instantiation
+        logger.info("CourtCase entity instantiated.");
+    }
 
     // Getters and Setters
     public int getCaseId() { return caseId; }
