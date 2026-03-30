@@ -13,7 +13,7 @@ import vtdi.keniel.filems.models.InvolvedParty;
 import vtdi.keniel.filems.models.Judge;
 import vtdi.keniel.filems.utils.DatabaseConnection;
 
-public class CourtCaseDAO {
+public class CourtCaseDAO implements ICourtCaseDAO {
     
     // Manage and Log All Exceptions requirement [cite: 27]
     private static final Logger logger = LogManager.getLogger(CourtCaseDAO.class);

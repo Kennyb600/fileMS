@@ -7,6 +7,8 @@ import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import vtdi.keniel.filems.dao.HibernateCaseDAO;
+import vtdi.keniel.filems.models.CourtCase;
+import vtdi.keniel.filems.dao.ICourtCaseDAO;
 
 /**
  * Handles individual client connections on a separate thread.
@@ -20,11 +22,11 @@ public class ClientHandler implements Runnable {
     private ObjectInputStream in;
     
     // We will use our DAO to interact with the database when the client asks us to
-    private HibernateCaseDAO caseDAO;
+    private ICourtCaseDAO caseDAO;
 
-    public ClientHandler(Socket socket) {
+    public ClientHandler(Socket socket, ICourtCaseDAO caseDAO) {
         this.socket = socket;
-        this.caseDAO = new HibernateCaseDAO();
+        this.caseDAO = caseDAO;
     }
 
     @Override
@@ -71,6 +73,17 @@ public class ClientHandler implements Runnable {
                     // Example: Client wants all cases. We fetch them using the DAO.
                     logger.info("Processing GET_ALL_CASES command...");
                     return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, caseDAO.getAllCases());
+                
+                case INSERT_CASE:
+                    logger.info("Processing INSERT_CASE command...");
+                    CourtCase newCase = (CourtCase) request.getPayload();
+                    
+                    boolean success = caseDAO.insertCase(newCase);
+                    if (success) {
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case inserted successfully.");
+                    } else {
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Database insertion failed.");
+                    }
                     
                 // We will implement INSERT, UPDATE, DELETE here later
                     

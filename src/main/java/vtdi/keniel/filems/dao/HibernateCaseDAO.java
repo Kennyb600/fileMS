@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import vtdi.keniel.filems.models.CourtCase;
 import vtdi.keniel.filems.utils.HibernateUtil;
 
-public class HibernateCaseDAO {
+public class HibernateCaseDAO implements ICourtCaseDAO {
 
     // Fulfills "Manage and Log All Exceptions" [cite: 31]
     private static final Logger logger = LogManager.getLogger(HibernateCaseDAO.class);
