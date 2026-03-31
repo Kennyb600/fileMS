@@ -26,19 +26,19 @@ public class CourtCase implements Serializable {
     private String caseNumber;
     
     // Hibernate automatically maps the relationships
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "applicant_id")
     private InvolvedParty applicant;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "respondent_id")
     private InvolvedParty respondent;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "child_id")
     private InvolvedParty child;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "judge_id")
     private Judge judge;
     

@@ -8,13 +8,9 @@ import org.apache.logging.log4j.Logger;
 @MappedSuperclass
 public abstract class Person implements Serializable {
     
-    // 1. Serialization requirement for Network transmission
     private static final long serialVersionUID = 1L;
-    
-    // 2. Strict Rule: Log4j Logger for event logging
     private static final Logger logger = LogManager.getLogger(Person.class);
 
-    // We will override this column name in the subclasses
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
@@ -36,6 +32,26 @@ public abstract class Person implements Serializable {
         logger.info("Instantiated a new Person object: " + firstName + " " + lastName);
     }
 
+    // --- THE SMART SETTER ---
+    // Takes the single text box string from the GUI and splits it for the database
+    public void setName(String fullName) {
+        if (fullName != null && fullName.contains(" ")) {
+            String[] parts = fullName.split(" ", 2); // Splits into 2 pieces at the first space
+            this.firstName = parts[0];
+            this.lastName = parts[1];
+        } else {
+            // If they only typed one word (e.g., just "John")
+            this.firstName = fullName;
+            this.lastName = ""; 
+        }
+    }
+
+    // The GUI or other classes might still want to ask for "getName()"
+    public String getName() {
+        return this.firstName + " " + this.lastName;
+    }
+    // ------------------------
+    
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

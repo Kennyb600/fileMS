@@ -40,7 +40,7 @@ public class ClientHandler implements Runnable {
             
             logger.info("Input/Output streams established for client: " + socket.getInetAddress().getHostAddress());
 
-            // Listen for incoming serialized objects [cite: 71]
+            // Listen for incoming serialized objects
             while (true) {
                 // Read the serialized NetworkMessage from the client
                 NetworkMessage request = (NetworkMessage) in.readObject();
@@ -70,7 +70,6 @@ public class ClientHandler implements Runnable {
         try {
             switch (request.getCommand()) {
                 case GET_ALL_CASES:
-                    // Example: Client wants all cases. We fetch them using the DAO.
                     logger.info("Processing GET_ALL_CASES command...");
                     return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, caseDAO.getAllCases());
                 
@@ -84,16 +83,41 @@ public class ClientHandler implements Runnable {
                     } else {
                         return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Database insertion failed.");
                     }
-                    
-                // We will implement INSERT, UPDATE, DELETE here later
+                
+                case UPDATE_CASE:
+                    try {
+                        CourtCase updatedCase = (CourtCase) request.getPayload();
+                        caseDAO.updateCase(updatedCase); 
+                        
+                        logger.info("Successfully updated CourtCase with ID: " + updatedCase.getCaseId());
+                        // Return the response instead of writing it directly
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case updated successfully.");
+                    } catch (Exception e) {
+                        logger.error("Fatal error during UPDATE_CASE operation.", e);
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Failed to update case: " + e.getMessage());
+                    }
+
+                case DELETE_CASE:
+                    try {
+                        Integer caseIdToDelete = (Integer) request.getPayload();
+                        // Convert the Integer to a String to satisfy your DAO's signature
+                        caseDAO.deleteCase(String.valueOf(caseIdToDelete)); 
+        
+                        logger.info("Successfully deleted CourtCase with ID: " + caseIdToDelete);
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case deleted successfully.");
+                    } catch (Exception e) {
+                        logger.error("Fatal error during DELETE_CASE operation for ID: " + request.getPayload(), e);
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Failed to delete case: " + e.getMessage());
+                    }
                     
                 default:
-                    logger.warn("Received unknown command: " + request.getCommand());
-                    return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Unknown Command");
+                    logger.warn("Received unknown command from client: " + request.getCommand());
+                    return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Unknown command.");
             }
         } catch (Exception e) {
-            logger.error("Error processing client request: " + e.getMessage(), e);
-            return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Internal Server Error");
+            logger.fatal("Critical failure in ClientHandler switch block processing.", e);
+            // Fallback return statement if the entire switch block fails
+            return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Critical server error processing request.");
         }
     }
 
