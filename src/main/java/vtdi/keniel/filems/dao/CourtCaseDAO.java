@@ -15,7 +15,7 @@ import vtdi.keniel.filems.utils.DatabaseConnection;
 
 public class CourtCaseDAO implements ICourtCaseDAO {
     
-    // Manage and Log All Exceptions requirement [cite: 27]
+    // Manage and Log All Exceptions requirement
     private static final Logger logger = LogManager.getLogger(CourtCaseDAO.class);
 
     // --------------------------------------------------------
@@ -48,7 +48,7 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     }
 
     // --------------------------------------------------------
-    // READ (Select with condition) [cite: 24]
+    // READ (Select with condition) 
     // --------------------------------------------------------
     public CourtCase getCaseByNumber(String caseNumber) {
         String sql = "SELECT * FROM CourtCases WHERE case_number = ?";
@@ -74,11 +74,12 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     }
 
     // --------------------------------------------------------
-    // READ ALL (Multiple select) [cite: 24]
+    // READ ALL (Multiple select) 
     // --------------------------------------------------------
     public List<CourtCase> getAllCases() {
         List<CourtCase> caseList = new ArrayList<>();
-        String sql = "SELECT * FROM CourtCases ORDER BY created_at DESC";
+        // CHANGED: Sorting by order_date instead of created_at
+        String sql = "SELECT * FROM CourtCases ORDER BY order_date DESC";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -96,7 +97,7 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     }
 
     // --------------------------------------------------------
-    // UPDATE [cite: 24]
+    // UPDATE 
     // --------------------------------------------------------
     public boolean updateCase(CourtCase courtCase) {
         String sql = "UPDATE CourtCases SET applicant_id = ?, respondent_id = ?, child_id = ?, " +
@@ -127,7 +128,7 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     }
 
     // --------------------------------------------------------
-    // DELETE [cite: 25]
+    // DELETE 
     // --------------------------------------------------------
     public boolean deleteCase(String caseNumber) {
         String sql = "DELETE FROM CourtCases WHERE case_number = ?";
@@ -151,11 +152,11 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     }
 
     // --------------------------------------------------------
-    // HELPER: Managing Result Sets [cite: 26]
+    // HELPER: Managing Result Sets 
     // --------------------------------------------------------
     private CourtCase mapResultSetToCase(ResultSet rs) throws SQLException {
         CourtCase courtCase = new CourtCase();
-        courtCase.setCaseId(rs.getInt("case_id"));
+        // CHANGED: Removed the caseId setter entirely
         courtCase.setCaseNumber(rs.getString("case_number"));
         courtCase.setCourtOrder(rs.getString("court_order"));
         

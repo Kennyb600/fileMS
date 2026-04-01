@@ -8,24 +8,16 @@ import org.apache.logging.log4j.Logger;
 
 @Entity
 @Table(name = "CourtCases")
-// ADDED: implements Serializable
 public class CourtCase implements Serializable {
     
-    // ADDED: serialVersionUID
     private static final long serialVersionUID = 1L;
-
-    // ADDED: Strict Rule Log4j Logger
     private static final Logger logger = LogManager.getLogger(CourtCase.class);
 
+    // caseId has been removed. caseNumber is now the Primary Key!
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "case_id")
-    private int caseId;
-
-    @Column(name = "case_number", unique = true, nullable = false)
+    @Column(name = "case_number", nullable = false)
     private String caseNumber;
     
-    // Hibernate automatically maps the relationships
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "applicant_id")
     private InvolvedParty applicant;
@@ -49,14 +41,10 @@ public class CourtCase implements Serializable {
     private LocalDate orderDate;
 
     public CourtCase() {
-        // ADDED: Info log for instantiation
         logger.info("CourtCase entity instantiated.");
     }
 
-    // Getters and Setters
-    public int getCaseId() { return caseId; }
-    public void setCaseId(int caseId) { this.caseId = caseId; }
-
+    // Getters and Setters (Notice caseId is gone)
     public String getCaseNumber() { return caseNumber; }
     public void setCaseNumber(String caseNumber) { this.caseNumber = caseNumber; }
 

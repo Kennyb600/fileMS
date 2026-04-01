@@ -1549,3 +1549,776 @@ java.net.ConnectException: Connection refused: connect
 2026-03-31 07:32:08 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
 2026-03-31 07:32:08 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 2 cases into the JTable.
 2026-03-31 07:32:08 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Setting up Traditional DAO Test Environment.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:15:35 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testInsertCase...
+2026-04-01 07:15:36 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:15:37 [main] ERROR vtdi.keniel.filems.dao.CourtCaseDAO - Error inserting court case TEST-DAO-001: Table 'maintenancedept_wms.courtcases' doesn't exist
+java.sql.SQLSyntaxErrorException: Table 'maintenancedept_wms.courtcases' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at vtdi.keniel.filems.dao.CourtCaseDAO.insertCase(CourtCaseDAO.java:39) [classes/:?]
+	at vtdi.keniel.filems.dao.CourtCaseDAOTest.testInsertCase(CourtCaseDAOTest.java:47) [test-classes/:?]
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) [junit-platform-commons-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.2.5.jar:3.2.5]
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetCaseByNumber...
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:15:37 [main] ERROR vtdi.keniel.filems.dao.CourtCaseDAO - Error retrieving case TEST-DAO-001: Table 'maintenancedept_wms.courtcases' doesn't exist
+java.sql.SQLSyntaxErrorException: Table 'maintenancedept_wms.courtcases' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:968) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at vtdi.keniel.filems.dao.CourtCaseDAO.getCaseByNumber(CourtCaseDAO.java:62) [classes/:?]
+	at vtdi.keniel.filems.dao.CourtCaseDAOTest.testGetCaseByNumber(CourtCaseDAOTest.java:55) [test-classes/:?]
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) [junit-platform-commons-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.2.5.jar:3.2.5]
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testUpdateCase...
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:15:37 [main] ERROR vtdi.keniel.filems.dao.CourtCaseDAO - Error updating court case TEST-DAO-001: Table 'maintenancedept_wms.courtcases' doesn't exist
+java.sql.SQLSyntaxErrorException: Table 'maintenancedept_wms.courtcases' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at vtdi.keniel.filems.dao.CourtCaseDAO.updateCase(CourtCaseDAO.java:117) [classes/:?]
+	at vtdi.keniel.filems.dao.CourtCaseDAOTest.testUpdateCase(CourtCaseDAOTest.java:65) [test-classes/:?]
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) [junit-platform-commons-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.2.5.jar:3.2.5]
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetAllCases...
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:15:37 [main] ERROR vtdi.keniel.filems.dao.CourtCaseDAO - Error retrieving all cases: Table 'maintenancedept_wms.courtcases' doesn't exist
+java.sql.SQLSyntaxErrorException: Table 'maintenancedept_wms.courtcases' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:968) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at vtdi.keniel.filems.dao.CourtCaseDAO.getAllCases(CourtCaseDAO.java:86) [classes/:?]
+	at vtdi.keniel.filems.dao.CourtCaseDAOTest.testGetAllCases(CourtCaseDAOTest.java:77) [test-classes/:?]
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) [junit-platform-commons-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.2.5.jar:3.2.5]
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testDeleteCase...
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:15:37 [main] ERROR vtdi.keniel.filems.dao.CourtCaseDAO - Error deleting court case TEST-DAO-001: Table 'maintenancedept_wms.courtcases' doesn't exist
+java.sql.SQLSyntaxErrorException: Table 'maintenancedept_wms.courtcases' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at vtdi.keniel.filems.dao.CourtCaseDAO.deleteCase(CourtCaseDAO.java:141) [classes/:?]
+	at vtdi.keniel.filems.dao.CourtCaseDAOTest.testDeleteCase(CourtCaseDAOTest.java:85) [test-classes/:?]
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) [junit-platform-commons-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) [junit-jupiter-engine-5.10.0.jar:5.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) [junit-platform-engine-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) [junit-platform-launcher-1.10.0.jar:1.10.0]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.2.5.jar:3.2.5]
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Initializing setup for CourtCase testing.
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Executing testCourtCaseCreation...
+2026-04-01 07:15:37 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - testCourtCaseCreation passed successfully.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Setting up Traditional DAO Test Environment.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:25:55 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testInsertCase...
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully inserted new court case: TEST-DAO-001
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetCaseByNumber...
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved case: TEST-DAO-001
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testUpdateCase...
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully updated court case: TEST-DAO-001
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved case: TEST-DAO-001
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetAllCases...
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved 1 cases from the database.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testDeleteCase...
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully deleted court case: TEST-DAO-001
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-01 07:25:56 [main] WARN  vtdi.keniel.filems.dao.CourtCaseDAO - No case found with number: TEST-DAO-001
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Initializing setup for CourtCase testing.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Executing testCourtCaseCreation...
+2026-04-01 07:25:56 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - testCourtCaseCreation passed successfully.
+2026-04-01 07:27:33 [main] INFO  vtdi.keniel.filems.network.FileMSServer - FileMS TCP/IP Server Engine started. Listening on port 8888
+2026-04-01 07:27:33 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Initializing Spring IoC Container...
+2026-04-01 07:27:34 [main] INFO  vtdi.keniel.filems.config.AppConfig - Spring IoC Framework is injecting the HibernateCaseDAO plug-in.
+2026-04-01 07:27:34 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:27:44 [main] INFO  vtdi.keniel.filems.network.FileMSClient - --- STARTING CLIENT TEST ---
+2026-04-01 07:27:44 [main] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:27:44 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:27:44 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:27:44 [main] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:27:44 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:27:44 [main] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:27:44 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:27:44 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:27:44 [Thread-0] INFO  vtdi.keniel.filems.utils.HibernateUtil - Attempting to build Hibernate SessionFactory.
+2026-04-01 07:27:48 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:27:48 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:27:48 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:27:48 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:27:49 [Thread-0] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 0 cases.
+2026-04-01 07:27:49 [Thread-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:27:49 [main] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:27:49 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:27:49 [main] INFO  vtdi.keniel.filems.network.FileMSClient - --- CLIENT TEST FINISHED ---
+2026-04-01 07:27:49 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:27:58 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Initializing MainAppFrame (Parent Window)...
+2026-04-01 07:27:58 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - MainAppFrame initialized successfully.
+2026-04-01 07:28:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Court Case Internal Form.
+2026-04-01 07:28:02 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Initializing CourtCaseInternalFrame...
+2026-04-01 07:28:02 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - JTable and TableModel configured.
+2026-04-01 07:28:03 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:28:03 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:28:03 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:28:03 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:28:03 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:28:03 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 0 cases.
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:28:03 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:28:03 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 0 cases into the JTable.
+2026-04-01 07:28:03 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:28:05 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:28:05 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:28:05 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:28:05 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:28:05 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:28:05 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 0 cases.
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:28:05 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:28:05 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 0 cases into the JTable.
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:28:05 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:28:06 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Opening Insert Case Dialog Form...
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: INSERT_CASE
+2026-04-01 07:30:38 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:30:38 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: INSERT_CASE
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: INSERT_CASE
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.network.ClientHandler - Processing INSERT_CASE command...
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully inserted new court case.
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:30:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:30:38 [Thread-4] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:30:41 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:30:41 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:30:41 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:30:41 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:30:41 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:30:41 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 1 cases.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:30:41 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:30:41 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 1 cases into the JTable.
+2026-04-01 07:30:41 [Thread-5] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:30:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Attempting to delete Case Number: S2026S0001
+2026-04-01 07:30:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: DELETE_CASE
+2026-04-01 07:30:50 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:30:50 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:30:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:30:50 [Thread-6] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:30:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: DELETE_CASE
+2026-04-01 07:30:50 [Thread-6] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: DELETE_CASE
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved case: S2026S0001
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully deleted court case: S2026S0001
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.network.ClientHandler - Successfully deleted CourtCase with Number: S2026S0001
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:30:51 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:30:51 [Thread-6] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Deleted Case Number S2026S0001 via GUI.
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:30:52 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:30:52 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 0 cases.
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:30:52 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 0 cases into the JTable.
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:30:52 [Thread-7] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:30:53 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:30:53 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:30:53 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:30:53 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:30:53 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:30:53 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 0 cases.
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:30:53 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:30:53 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 0 cases into the JTable.
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:30:53 [Thread-8] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:30:59 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Opening Insert Case Dialog Form...
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: INSERT_CASE
+2026-04-01 07:31:20 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:31:20 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: INSERT_CASE
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: INSERT_CASE
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.network.ClientHandler - Processing INSERT_CASE command...
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully inserted new court case.
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:31:20 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:31:20 [Thread-9] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:31:22 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:31:22 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:31:22 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:31:22 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:31:22 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:31:22 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 1 cases.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:31:22 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:31:22 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 1 cases into the JTable.
+2026-04-01 07:31:22 [Thread-10] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:31:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Attempting to delete Case Number: 
+2026-04-01 07:31:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: DELETE_CASE
+2026-04-01 07:31:30 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:31:30 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:31:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:31:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: DELETE_CASE
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: DELETE_CASE
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved case: 
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully deleted court case: 
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.network.ClientHandler - Successfully deleted CourtCase with Number: 
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:31:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:31:30 [Thread-11] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Deleted Case Number  via GUI.
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:31:31 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:31:31 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 0 cases.
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:31:31 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 0 cases into the JTable.
+2026-04-01 07:31:31 [Thread-12] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:31:34 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Opening Insert Case Dialog Form...
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: INSERT_CASE
+2026-04-01 07:33:29 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:33:29 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: INSERT_CASE
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: INSERT_CASE
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.network.ClientHandler - Processing INSERT_CASE command...
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully inserted new court case.
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:33:29 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:33:29 [Thread-13] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-01 07:33:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-01 07:33:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-01 07:33:30 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-01 07:33:30 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-01 07:33:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-01 07:33:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully retrieved 1 cases.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-01 07:33:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-01 07:33:30 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 1 cases into the JTable.
+2026-04-01 07:33:30 [Thread-14] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.

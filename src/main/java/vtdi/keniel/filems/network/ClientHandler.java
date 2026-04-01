@@ -6,13 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import vtdi.keniel.filems.dao.HibernateCaseDAO;
 import vtdi.keniel.filems.models.CourtCase;
 import vtdi.keniel.filems.dao.ICourtCaseDAO;
 
-/**
- * Handles individual client connections on a separate thread.
- */
 public class ClientHandler implements Runnable {
 
     private static final Logger logger = LogManager.getLogger(ClientHandler.class);
@@ -21,7 +17,6 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     
-    // We will use our DAO to interact with the database when the client asks us to
     private ICourtCaseDAO caseDAO;
 
     public ClientHandler(Socket socket, ICourtCaseDAO caseDAO) {
@@ -32,24 +27,18 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
         try {
-            // Architecture Rule: ALWAYS initialize ObjectOutputStream before ObjectInputStream
-            // If both sides initialize InputStream first, they will deadlock waiting for headers!
             out = new ObjectOutputStream(socket.getOutputStream());
             out.flush();
             in = new ObjectInputStream(socket.getInputStream());
             
             logger.info("Input/Output streams established for client: " + socket.getInetAddress().getHostAddress());
 
-            // Listen for incoming serialized objects
             while (true) {
-                // Read the serialized NetworkMessage from the client
                 NetworkMessage request = (NetworkMessage) in.readObject();
                 logger.info("Received request command: " + request.getCommand());
 
-                // Process the request and generate a response
                 NetworkMessage response = processRequest(request);
                 
-                // Send the serialized response back to the client
                 out.writeObject(response);
                 out.flush();
             }
@@ -63,9 +52,6 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    /**
-     * Determines what to do based on the command sent by the client.
-     */
     private NetworkMessage processRequest(NetworkMessage request) {
         try {
             switch (request.getCommand()) {
@@ -89,8 +75,8 @@ public class ClientHandler implements Runnable {
                         CourtCase updatedCase = (CourtCase) request.getPayload();
                         caseDAO.updateCase(updatedCase); 
                         
-                        logger.info("Successfully updated CourtCase with ID: " + updatedCase.getCaseId());
-                        // Return the response instead of writing it directly
+                        // CHANGED: Logging the Case Number instead of Case ID
+                        logger.info("Successfully updated CourtCase with Number: " + updatedCase.getCaseNumber());
                         return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case updated successfully.");
                     } catch (Exception e) {
                         logger.error("Fatal error during UPDATE_CASE operation.", e);
@@ -99,14 +85,20 @@ public class ClientHandler implements Runnable {
 
                 case DELETE_CASE:
                     try {
-                        Integer caseIdToDelete = (Integer) request.getPayload();
-                        // Convert the Integer to a String to satisfy your DAO's signature
-                        caseDAO.deleteCase(String.valueOf(caseIdToDelete)); 
+                        String caseNumberToDelete = (String) request.getPayload();
+                        
+                        // CHANGED: Respecting the boolean returned by the DAO
+                        boolean isDeleted = caseDAO.deleteCase(caseNumberToDelete); 
         
-                        logger.info("Successfully deleted CourtCase with ID: " + caseIdToDelete);
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case deleted successfully.");
+                        if (isDeleted) {
+                            logger.info("Successfully deleted CourtCase with Number: " + caseNumberToDelete);
+                            return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case deleted successfully.");
+                        } else {
+                            logger.warn("DAO failed to delete case: " + caseNumberToDelete);
+                            return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Case not found in database.");
+                        }
                     } catch (Exception e) {
-                        logger.error("Fatal error during DELETE_CASE operation for ID: " + request.getPayload(), e);
+                        logger.error("Fatal error during DELETE_CASE operation for Number: " + request.getPayload(), e);
                         return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Failed to delete case: " + e.getMessage());
                     }
                     
@@ -116,7 +108,6 @@ public class ClientHandler implements Runnable {
             }
         } catch (Exception e) {
             logger.fatal("Critical failure in ClientHandler switch block processing.", e);
-            // Fallback return statement if the entire switch block fails
             return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Critical server error processing request.");
         }
     }
