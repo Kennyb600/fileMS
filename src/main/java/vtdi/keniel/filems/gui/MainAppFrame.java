@@ -62,7 +62,23 @@ public class MainAppFrame extends JFrame {
         caseFormItem.setToolTipText("Open the Court Case management form");
         caseFormItem.addActionListener(e -> openCourtCaseForm());
 
+        // 2. NEW: Judge Menu Item
+        JMenuItem judgeFormItem = new JMenuItem("Judges");
+        judgeFormItem.setMnemonic(KeyEvent.VK_J);
+        judgeFormItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.ALT_MASK)); // Alt+J
+        judgeFormItem.setToolTipText("Open the Judge management form");
+        judgeFormItem.addActionListener(e -> openJudgeForm());
+
+        // 3. NEW: Involved Party Menu Item
+        JMenuItem partyFormItem = new JMenuItem("Involved Parties");
+        partyFormItem.setMnemonic(KeyEvent.VK_P);
+        partyFormItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK)); // Alt+P
+        partyFormItem.setToolTipText("Open the Involved Party management form");
+        partyFormItem.addActionListener(e -> openInvolvedPartyForm());
+        
         manageMenu.add(caseFormItem);
+        manageMenu.add(judgeFormItem);
+        manageMenu.add(partyFormItem);
 
         // Add menus to bar
         menuBar.add(fileMenu);
@@ -77,6 +93,22 @@ public class MainAppFrame extends JFrame {
         caseFrame.setVisible(true);
     }
 
+    //Open Judge Form
+    private void openJudgeForm() {
+        logger.info("Opening Judge Internal Form.");
+        JudgeInternalFrame judgeFrame = new JudgeInternalFrame();
+        desktopPane.add(judgeFrame);
+        judgeFrame.setVisible(true);
+    }
+
+    //Open Involved Party Form
+    private void openInvolvedPartyForm() {
+        logger.info("Opening Involved Party Internal Form.");
+        InvolvedPartyInternalFrame partyFrame = new InvolvedPartyInternalFrame();
+        desktopPane.add(partyFrame);
+        partyFrame.setVisible(true);
+    }
+    
     public static void main(String[] args) {
         // Swing GUIs should be created on the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
