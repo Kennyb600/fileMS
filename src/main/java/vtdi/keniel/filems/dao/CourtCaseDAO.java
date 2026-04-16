@@ -183,4 +183,20 @@ public class CourtCaseDAO implements ICourtCaseDAO {
 
         return courtCase;
     }
+    
+    // --------------------------------------------------------
+    // SATISFYING INTERFACE FOR UNUSED JDBC METHODS
+    // --------------------------------------------------------
+    @Override
+    public List<Judge> getAllJudges() {
+        logger.warn("getAllJudges not implemented in JDBC. System is using HibernateCaseDAO.");
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<InvolvedParty> getAllParties() {
+        logger.warn("getAllParties not implemented in JDBC. System is using HibernateCaseDAO.");
+        return new ArrayList<>();
+    }
+    
 }

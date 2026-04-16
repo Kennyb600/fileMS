@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import vtdi.keniel.filems.models.CourtCase;
+import vtdi.keniel.filems.models.Judge;
+import vtdi.keniel.filems.models.InvolvedParty;
 import vtdi.keniel.filems.utils.HibernateUtil;
 
 public class HibernateCaseDAO implements ICourtCaseDAO {
@@ -85,6 +87,26 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
                 logger.error("Hibernate error deleting court case: " + e.getMessage(), e);
                 return false;
             }
+        }
+    }
+    
+    @Override
+    public List<Judge> getAllJudges() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM Judge", Judge.class).list();
+        } catch (Exception e) {
+            logger.error("Error fetching judges: " + e.getMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public List<InvolvedParty> getAllParties() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM InvolvedParty", InvolvedParty.class).list();
+        } catch (Exception e) {
+            logger.error("Error fetching parties: " + e.getMessage(), e);
+            return null;
         }
     }
 }

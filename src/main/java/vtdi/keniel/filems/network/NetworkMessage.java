@@ -19,8 +19,6 @@ public class NetworkMessage implements Serializable {
         DELETE_CASE,
         FIND_CASE_BY_ID,
         GET_ALL_CASES,
-        
-        // --- NEW COMMANDS FOR THE GUI ---
         GET_ALL_JUDGES,
         GET_ALL_PARTIES,
         
