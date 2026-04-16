@@ -10,19 +10,26 @@ import org.apache.logging.log4j.Logger;
 public class MainAppFrame extends JFrame {
 
     private static final Logger logger = LogManager.getLogger(MainAppFrame.class);
-    private JDesktopPane desktopPane;
+    private JTabbedPane tabbedPane; // Escaping the pop-up trap!
 
     public MainAppFrame() {
         try {
-            logger.info("Initializing MainAppFrame (Parent Window)...");
+            logger.info("Initializing Modern MainAppFrame Dashboard...");
             
             setTitle("Maintenance Dept - File Management System");
-            setSize(1024, 768);
+            setSize(1100, 700);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLocationRelativeTo(null); // Center on screen
 
-            desktopPane = new JDesktopPane();
-            add(desktopPane, BorderLayout.CENTER);
+            // Initialize the Tabbed Dashboard
+            tabbedPane = new JTabbedPane();
+            
+            // Dock all the views natively into tabs
+            tabbedPane.addTab("Court Cases", new CourtCaseInternalFrame());
+            tabbedPane.addTab("Judges", new JudgeInternalFrame());
+            tabbedPane.addTab("Involved Parties", new InvolvedPartyInternalFrame());
+
+            add(tabbedPane, BorderLayout.CENTER);
 
             setupMenuBar();
 
@@ -38,79 +45,47 @@ public class MainAppFrame extends JFrame {
 
         // --- FILE MENU ---
         JMenu fileMenu = new JMenu("File");
-        fileMenu.setMnemonic(KeyEvent.VK_F); // Alt+F opens this menu
-        fileMenu.setToolTipText("System file operations");
-
-        JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.setMnemonic(KeyEvent.VK_X);
-        exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK)); // Ctrl+Q
-        exitItem.setToolTipText("Safely exit the application");
-        exitItem.addActionListener(e -> {
-            logger.info("User requested exit via Menu.");
-            System.exit(0);
-        });
+        fileMenu.setMnemonic(KeyEvent.VK_F); 
         
+        JMenuItem exitItem = new JMenuItem("Exit");
+        exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK)); 
+        exitItem.addActionListener(e -> System.exit(0));
         fileMenu.add(exitItem);
 
-        // --- MANAGE MENU ---
-        JMenu manageMenu = new JMenu("Manage");
-        manageMenu.setMnemonic(KeyEvent.VK_M);
+        // --- NAVIGATE MENU ---
+        JMenu navMenu = new JMenu("Navigate");
+        navMenu.setMnemonic(KeyEvent.VK_N);
 
-        JMenuItem caseFormItem = new JMenuItem("Court Cases");
-        caseFormItem.setMnemonic(KeyEvent.VK_C);
-        caseFormItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK)); // Alt+C
-        caseFormItem.setToolTipText("Open the Court Case management form");
-        caseFormItem.addActionListener(e -> openCourtCaseForm());
+        // Instead of opening popups, the menu now just switches the active tab!
+        JMenuItem caseItem = new JMenuItem("Go to Court Cases");
+        caseItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        caseItem.addActionListener(e -> tabbedPane.setSelectedIndex(0));
 
-        // 2. NEW: Judge Menu Item
-        JMenuItem judgeFormItem = new JMenuItem("Judges");
-        judgeFormItem.setMnemonic(KeyEvent.VK_J);
-        judgeFormItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.ALT_MASK)); // Alt+J
-        judgeFormItem.setToolTipText("Open the Judge management form");
-        judgeFormItem.addActionListener(e -> openJudgeForm());
+        JMenuItem judgeItem = new JMenuItem("Go to Judges");
+        judgeItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        judgeItem.addActionListener(e -> tabbedPane.setSelectedIndex(1));
 
-        // 3. NEW: Involved Party Menu Item
-        JMenuItem partyFormItem = new JMenuItem("Involved Parties");
-        partyFormItem.setMnemonic(KeyEvent.VK_P);
-        partyFormItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK)); // Alt+P
-        partyFormItem.setToolTipText("Open the Involved Party management form");
-        partyFormItem.addActionListener(e -> openInvolvedPartyForm());
+        JMenuItem partyItem = new JMenuItem("Go to Involved Parties");
+        partyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));
+        partyItem.addActionListener(e -> tabbedPane.setSelectedIndex(2));
         
-        manageMenu.add(caseFormItem);
-        manageMenu.add(judgeFormItem);
-        manageMenu.add(partyFormItem);
+        navMenu.add(caseItem);
+        navMenu.add(judgeItem);
+        navMenu.add(partyItem);
 
-        // Add menus to bar
         menuBar.add(fileMenu);
-        menuBar.add(manageMenu);
+        menuBar.add(navMenu);
         setJMenuBar(menuBar);
-    }
-
-    private void openCourtCaseForm() {
-        logger.info("Opening Court Case Internal Form.");
-        CourtCaseInternalFrame caseFrame = new CourtCaseInternalFrame();
-        desktopPane.add(caseFrame);
-        caseFrame.setVisible(true);
-    }
-
-    //Open Judge Form
-    private void openJudgeForm() {
-        logger.info("Opening Judge Internal Form.");
-        JudgeInternalFrame judgeFrame = new JudgeInternalFrame();
-        desktopPane.add(judgeFrame);
-        judgeFrame.setVisible(true);
-    }
-
-    //Open Involved Party Form
-    private void openInvolvedPartyForm() {
-        logger.info("Opening Involved Party Internal Form.");
-        InvolvedPartyInternalFrame partyFrame = new InvolvedPartyInternalFrame();
-        desktopPane.add(partyFrame);
-        partyFrame.setVisible(true);
     }
     
     public static void main(String[] args) {
-        // Swing GUIs should be created on the Event Dispatch Thread
+        // Apply the modern system theme before launching
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+            logger.warn("Could not set system look and feel.", ex);
+        }
+
         SwingUtilities.invokeLater(() -> {
             new MainAppFrame().setVisible(true);
         });
