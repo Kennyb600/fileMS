@@ -102,6 +102,24 @@ public class ClientHandler implements Runnable {
                         return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Failed to delete case: " + e.getMessage());
                     }
                     
+                case GET_ALL_JUDGES:
+                    try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+                    java.util.List<vtdi.keniel.filems.models.Judge> judges = session.createQuery("FROM Judge", vtdi.keniel.filems.models.Judge.class).list();
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, judges);
+                } catch (Exception e) {
+                    logger.error("Error fetching judges: " + e.getMessage(), e);
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, e.getMessage());
+                }
+
+                case GET_ALL_PARTIES:
+                    try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+                    java.util.List<vtdi.keniel.filems.models.InvolvedParty> parties = session.createQuery("FROM InvolvedParty", vtdi.keniel.filems.models.InvolvedParty.class).list();
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, parties);
+                } catch (Exception e) {
+                    logger.error("Error fetching parties: " + e.getMessage(), e);
+                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, e.getMessage());
+                }
+                    
                 default:
                     logger.warn("Received unknown command from client: " + request.getCommand());
                     return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Unknown command.");

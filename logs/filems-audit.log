@@ -3295,3 +3295,580 @@ java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child 
 2026-04-08 08:06:56 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
 2026-04-08 08:06:56 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Executing testCourtCaseCreation...
 2026-04-08 08:06:56 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - testCourtCaseCreation passed successfully.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Setting up Traditional DAO Test Environment.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:32 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testInsertCase...
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully inserted new court case: TEST-DAO-001
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetCaseByNumber...
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved case: TEST-DAO-001
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testUpdateCase...
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully updated court case: TEST-DAO-001
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved case: TEST-DAO-001
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetAllCases...
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved 3 cases from the database.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testDeleteCase...
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully deleted court case: TEST-DAO-001
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-09 06:52:33 [main] WARN  vtdi.keniel.filems.dao.CourtCaseDAO - No case found with number: TEST-DAO-001
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Setting up Hibernate ORM Test Environment.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testInsertCase...
+2026-04-09 06:52:33 [main] INFO  vtdi.keniel.filems.utils.HibernateUtil - Attempting to build Hibernate SessionFactory.
+2026-04-09 06:52:35 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:35 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:35 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:35 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully inserted new court case.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testGetCaseByNumber...
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testUpdateCase...
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully updated court case.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testGetAllCases...
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testDeleteCase...
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully deleted court case.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Initializing setup for CourtCase testing.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Executing testCourtCaseCreation...
+2026-04-09 06:52:36 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - testCourtCaseCreation passed successfully.
+2026-04-09 07:05:26 [main] INFO  vtdi.keniel.filems.network.FileMSClient - --- STARTING CLIENT TEST ---
+2026-04-09 07:05:26 [main] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-09 07:05:26 [main] ERROR vtdi.keniel.filems.network.FileMSClient - Network communication error: Connection refused: connect
+java.net.ConnectException: Connection refused: connect
+	at sun.nio.ch.Net.connect0(Native Method) ~[?:?]
+	at sun.nio.ch.Net.connect(Net.java:546) ~[?:?]
+	at sun.nio.ch.Net.connect(Net.java:535) ~[?:?]
+	at sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:585) ~[?:?]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[?:?]
+	at java.net.Socket.connect(Socket.java:659) ~[?:?]
+	at java.net.Socket.connect(Socket.java:597) ~[?:?]
+	at java.net.Socket.<init>(Socket.java:464) ~[?:?]
+	at java.net.Socket.<init>(Socket.java:276) ~[?:?]
+	at vtdi.keniel.filems.network.FileMSClient.sendRequest(FileMSClient.java:30) [classes/:?]
+	at vtdi.keniel.filems.network.FileMSClient.main(FileMSClient.java:66) [classes/:?]
+2026-04-09 07:05:26 [main] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_ERROR
+2026-04-09 07:05:26 [main] INFO  vtdi.keniel.filems.network.FileMSClient - --- CLIENT TEST FINISHED ---
+2026-04-09 07:05:32 [main] INFO  vtdi.keniel.filems.network.FileMSServer - FileMS TCP/IP Server Engine started. Listening on port 8888
+2026-04-09 07:05:32 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Initializing Spring IoC Container...
+2026-04-09 07:05:32 [main] INFO  vtdi.keniel.filems.config.AppConfig - Spring IoC Framework is injecting the HibernateCaseDAO plug-in.
+2026-04-09 07:05:32 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-09 07:05:45 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Initializing MainAppFrame (Parent Window)...
+2026-04-09 07:05:45 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - MainAppFrame initialized successfully.
+2026-04-09 07:05:49 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Court Case Internal Form.
+2026-04-09 07:05:49 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Initializing CourtCaseInternalFrame...
+2026-04-09 07:05:49 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - JTable and TableModel configured.
+2026-04-09 07:05:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-09 07:05:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-09 07:05:50 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-09 07:05:50 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-09 07:05:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-09 07:05:50 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-09 07:05:50 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-09 07:05:50 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-09 07:05:50 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-09 07:05:50 [Thread-0] INFO  vtdi.keniel.filems.utils.HibernateUtil - Attempting to build Hibernate SessionFactory.
+2026-04-09 07:05:53 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:53 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:53 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:53 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-09 07:05:54 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-09 07:05:54 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 2 cases into the JTable.
+2026-04-09 07:05:54 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-09 07:06:00 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Judge Internal Form.
+2026-04-09 07:06:00 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.JudgeInternalFrame - Initializing JudgeInternalFrame...
+2026-04-09 07:06:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.JudgeInternalFrame - Requesting Judge data from server...
+2026-04-09 07:06:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_JUDGES
+2026-04-09 07:06:01 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-09 07:06:01 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-09 07:06:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-09 07:06:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_JUDGES
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_JUDGES
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-09 07:06:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-09 07:06:01 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.JudgeInternalFrame - Successfully loaded judges into table.
+2026-04-09 07:06:01 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-09 07:06:11 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Involved Party Internal Form.
+2026-04-09 07:06:11 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.InvolvedPartyInternalFrame - Initializing InvolvedPartyInternalFrame...
+2026-04-09 07:06:12 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.InvolvedPartyInternalFrame - Requesting Party data from server...
+2026-04-09 07:06:12 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_PARTIES
+2026-04-09 07:06:12 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-09 07:06:12 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-09 07:06:12 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-09 07:06:12 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_PARTIES
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_PARTIES
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-09 07:06:12 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-09 07:06:12 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.InvolvedPartyInternalFrame - Successfully loaded involved parties into table.
+2026-04-09 07:06:12 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Setting up Traditional DAO Test Environment.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:46 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testInsertCase...
+2026-04-15 07:57:47 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:47 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully inserted new court case: TEST-DAO-001
+2026-04-15 07:57:47 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetCaseByNumber...
+2026-04-15 07:57:47 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved case: TEST-DAO-001
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testUpdateCase...
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully updated court case: TEST-DAO-001
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved case: TEST-DAO-001
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testGetAllCases...
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully retrieved 3 cases from the database.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAOTest - Executing testDeleteCase...
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.CourtCaseDAO - Successfully deleted court case: TEST-DAO-001
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.utils.DatabaseConnection - Database connection established successfully.
+2026-04-15 07:57:48 [main] WARN  vtdi.keniel.filems.dao.CourtCaseDAO - No case found with number: TEST-DAO-001
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Setting up Hibernate ORM Test Environment.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testInsertCase...
+2026-04-15 07:57:48 [main] INFO  vtdi.keniel.filems.utils.HibernateUtil - Attempting to build Hibernate SessionFactory.
+2026-04-15 07:57:51 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:51 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:51 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:51 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully inserted new court case.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testGetCaseByNumber...
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testUpdateCase...
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully updated court case.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testGetAllCases...
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAOTest - Executing Hibernate testDeleteCase...
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.dao.HibernateCaseDAO - Hibernate successfully deleted court case.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Initializing setup for CourtCase testing.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - Executing testCourtCaseCreation...
+2026-04-15 07:57:52 [main] INFO  vtdi.keniel.filems.models.CourtCaseTest - testCourtCaseCreation passed successfully.
+2026-04-15 08:02:00 [main] INFO  vtdi.keniel.filems.network.FileMSClient - --- STARTING CLIENT TEST ---
+2026-04-15 08:02:00 [main] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-15 08:02:00 [main] ERROR vtdi.keniel.filems.network.FileMSClient - Network communication error: Connection refused: connect
+java.net.ConnectException: Connection refused: connect
+	at sun.nio.ch.Net.connect0(Native Method) ~[?:?]
+	at sun.nio.ch.Net.connect(Net.java:546) ~[?:?]
+	at sun.nio.ch.Net.connect(Net.java:535) ~[?:?]
+	at sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:585) ~[?:?]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[?:?]
+	at java.net.Socket.connect(Socket.java:659) ~[?:?]
+	at java.net.Socket.connect(Socket.java:597) ~[?:?]
+	at java.net.Socket.<init>(Socket.java:464) ~[?:?]
+	at java.net.Socket.<init>(Socket.java:276) ~[?:?]
+	at vtdi.keniel.filems.network.FileMSClient.sendRequest(FileMSClient.java:30) [classes/:?]
+	at vtdi.keniel.filems.network.FileMSClient.main(FileMSClient.java:66) [classes/:?]
+2026-04-15 08:02:00 [main] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_ERROR
+2026-04-15 08:02:00 [main] INFO  vtdi.keniel.filems.network.FileMSClient - --- CLIENT TEST FINISHED ---
+2026-04-15 08:02:03 [main] INFO  vtdi.keniel.filems.network.FileMSServer - FileMS TCP/IP Server Engine started. Listening on port 8888
+2026-04-15 08:02:03 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Initializing Spring IoC Container...
+2026-04-15 08:02:03 [main] INFO  vtdi.keniel.filems.config.AppConfig - Spring IoC Framework is injecting the HibernateCaseDAO plug-in.
+2026-04-15 08:02:03 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-15 08:02:13 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Initializing MainAppFrame (Parent Window)...
+2026-04-15 08:02:13 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - MainAppFrame initialized successfully.
+2026-04-15 08:02:17 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Court Case Internal Form.
+2026-04-15 08:02:17 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Initializing CourtCaseInternalFrame...
+2026-04-15 08:02:17 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - JTable and TableModel configured.
+2026-04-15 08:02:21 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - User clicked 'Load Cases'. Requesting data from server...
+2026-04-15 08:02:21 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_CASES
+2026-04-15 08:02:21 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-15 08:02:21 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-15 08:02:21 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-15 08:02:21 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_CASES
+2026-04-15 08:02:21 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-15 08:02:21 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_CASES
+2026-04-15 08:02:21 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Processing GET_ALL_CASES command...
+2026-04-15 08:02:21 [Thread-0] INFO  vtdi.keniel.filems.utils.HibernateUtil - Attempting to build Hibernate SessionFactory.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.CourtCase - CourtCase entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-15 08:02:24 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-15 08:02:24 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.CourtCaseInternalFrame - Successfully loaded 2 cases into the JTable.
+2026-04-15 08:02:24 [Thread-0] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-15 08:02:37 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Involved Party Internal Form.
+2026-04-15 08:02:37 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.InvolvedPartyInternalFrame - Initializing InvolvedPartyInternalFrame...
+2026-04-15 08:02:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.InvolvedPartyInternalFrame - Requesting Party data from server...
+2026-04-15 08:02:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_PARTIES
+2026-04-15 08:02:38 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-15 08:02:38 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-15 08:02:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-15 08:02:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_PARTIES
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_PARTIES
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.models.InvolvedParty - InvolvedParty entity instantiated.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-15 08:02:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-15 08:02:38 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.InvolvedPartyInternalFrame - Successfully loaded involved parties into table.
+2026-04-15 08:02:38 [Thread-2] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-15 08:02:54 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - Opening Judge Internal Form.
+2026-04-15 08:02:54 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.JudgeInternalFrame - Initializing JudgeInternalFrame...
+2026-04-15 08:02:55 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.JudgeInternalFrame - Requesting Judge data from server...
+2026-04-15 08:02:55 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: GET_ALL_JUDGES
+2026-04-15 08:02:55 [main] INFO  vtdi.keniel.filems.network.FileMSServer - New client connected from: 127.0.0.1
+2026-04-15 08:02:55 [main] INFO  vtdi.keniel.filems.network.FileMSServer - Waiting for a new client connection...
+2026-04-15 08:02:55 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Successfully connected to the Server at 127.0.0.1:8888
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Input/Output streams established for client: 127.0.0.1
+2026-04-15 08:02:55 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Sent request to server: GET_ALL_JUDGES
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Received request command: GET_ALL_JUDGES
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Person - Instantiated a new empty Person object.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.models.Judge - Judge entity instantiated.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.network.NetworkMessage - NetworkMessage constructed with command: RESPONSE_OK
+2026-04-15 08:02:55 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.network.FileMSClient - Received response from server: RESPONSE_OK
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Client disconnected gracefully.
+2026-04-15 08:02:55 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.JudgeInternalFrame - Successfully loaded judges into table.
+2026-04-15 08:02:55 [Thread-3] INFO  vtdi.keniel.filems.network.ClientHandler - Cleaned up and closed connections for client.
+2026-04-15 08:02:59 [AWT-EventQueue-0] INFO  vtdi.keniel.filems.gui.MainAppFrame - User requested exit via Menu.

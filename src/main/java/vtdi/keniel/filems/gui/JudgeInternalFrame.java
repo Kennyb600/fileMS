@@ -62,14 +62,25 @@ public class JudgeInternalFrame extends JInternalFrame {
         add(controlPanel, BorderLayout.SOUTH);
     }
 
-    private void loadJudgesFromDatabase() {
+   private void loadJudgesFromDatabase() {
         logger.info("Requesting Judge data from server...");
         try {
-            // Note: You must add GET_ALL_JUDGES to your NetworkMessage.Command enum!
-            // NetworkMessage request = new NetworkMessage(NetworkMessage.Command.GET_ALL_JUDGES, null);
-            // NetworkMessage response = apiClient.sendRequest(request);
+            NetworkMessage request = new NetworkMessage(NetworkMessage.Command.GET_ALL_JUDGES, null);
+            NetworkMessage response = apiClient.sendRequest(request);
             
-            JOptionPane.showMessageDialog(this, "To load, implement GET_ALL_JUDGES in NetworkMessage and ClientHandler.");
+            if (response.getCommand() == NetworkMessage.Command.RESPONSE_OK) {
+                // Get the list of judges from the server payload
+                List<Judge> judges = (List<Judge>) response.getPayload();
+                
+                // Clear the table and add the new rows
+                tableModel.setRowCount(0); 
+                for (Judge j : judges) {
+                    tableModel.addRow(new Object[]{j.getId(), j.getName()});
+                }
+                logger.info("Successfully loaded judges into table.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to load Judges: " + response.getPayload());
+            }
         } catch (Exception e) {
             logger.error("Exception loading judges: " + e.getMessage(), e);
         }

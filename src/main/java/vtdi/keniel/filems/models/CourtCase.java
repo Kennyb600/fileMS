@@ -43,6 +43,35 @@ public class CourtCase implements Serializable {
     public CourtCase() {
         logger.info("CourtCase entity instantiated.");
     }
+    
+    /**
+     * Generates a formatted console interface for the Court Case details.
+     * Utilizes Java 17 Text Blocks for clean ASCII formatting.
+     */
+    public String getFormattedConsoleView() {
+        // Using %-15s to left-justify the labels with a fixed width of 15 characters
+        String consoleTemplate = """
+                ===========================================================
+                                  COURT CASE SUMMARY                 
+                ===========================================================
+                %-15s : %s
+                %-15s : %s %s
+                -----------------------------------------------------------
+                %-15s : %s %s
+                %-15s : %s %s
+                -----------------------------------------------------------
+                %-15s : %s
+                ===========================================================
+                """;
+
+        return String.format(consoleTemplate,
+                "Case Number", this.getCaseNumber(),
+                "Presiding Judge", this.getJudge().getFirstName(), this.getJudge().getLastName(),
+                "Applicant", this.getApplicant().getFirstName(), this.getApplicant().getLastName(),
+                "Respondent", this.getRespondent().getFirstName(), this.getRespondent().getLastName(),
+                "Current Order", this.getCourtOrder() // Or whatever your order/status field is named
+        );
+    }
 
     // Getters and Setters (Notice caseId is gone)
     public String getCaseNumber() { return caseNumber; }

@@ -19,10 +19,15 @@ public class NetworkMessage implements Serializable {
         DELETE_CASE,
         FIND_CASE_BY_ID,
         GET_ALL_CASES,
+        
+        // --- NEW COMMANDS FOR THE GUI ---
+        GET_ALL_JUDGES,
+        GET_ALL_PARTIES,
+        
         RESPONSE_OK,     // Sent by server upon success
         RESPONSE_ERROR   // Sent by server upon failure
     }
-
+    
     private Command command;
     private Object payload; // Object allows us to send a CourtCase, a String, or a List
 
