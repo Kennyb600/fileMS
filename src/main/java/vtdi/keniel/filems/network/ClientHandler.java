@@ -96,7 +96,7 @@ public class ClientHandler implements Runnable {
                                 response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Invalid payload for INSERT_CASE.");
                             }
                             break;
-                            
+                                                                                   
                             case UPDATE_CASE:
                             if (request.getPayload() instanceof CourtCaseDTO) {
                                 CourtCaseDTO incomingDTO = (CourtCaseDTO) request.getPayload();
@@ -113,6 +113,22 @@ public class ClientHandler implements Runnable {
                                 response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Invalid payload for UPDATE_CASE.");
                             }
                             break;
+                            
+                            case DELETE_CASE:
+            // For deleting a case, the payload is just the Case Number (a String)
+            if (request.getPayload() instanceof String) {
+                String caseNumberToDelete = (String) request.getPayload();
+                boolean success = courtCaseDAO.deleteCase(caseNumberToDelete);
+                
+                if (success) {
+                    response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Court Case deleted successfully.");
+                } else {
+                    response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Database failed to delete the Court Case.");
+                }
+            } else {
+                response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Invalid payload. Expected a String Case Number.");
+            }
+            break;
                         
                             case UPDATE_PARTY:
             if (request.getPayload() instanceof InvolvedPartyDTO) {

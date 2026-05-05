@@ -22,7 +22,6 @@ public class CourtCaseInternalFrame extends JPanel {
     private DefaultTableModel tableModel;
     private FileMSClient apiClient;
     
-    // We cache the cases so we can instantly pull up the dossier without another network call!
     private List<CourtCaseDTO> currentCases; 
 
     public CourtCaseInternalFrame() {
@@ -46,7 +45,6 @@ public class CourtCaseInternalFrame extends JPanel {
             public boolean isCellEditable(int row, int column) { return false; }
         };
         caseTable = new JTable(tableModel);
-        // Set selection mode to strictly one row at a time to prevent bugs when viewing dossiers
         caseTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(new JScrollPane(caseTable), BorderLayout.CENTER);
     }
@@ -57,6 +55,7 @@ public class CourtCaseInternalFrame extends JPanel {
         JButton btnFileCase = new JButton("File New Case");
         JButton btnUpdateStatus = new JButton("Update Status/Order");
         JButton btnViewDossier = new JButton("View Full Dossier");
+        JButton btnDeleteCase = new JButton("Delete Case"); // NEW BUTTON!
 
         btnFileCase.addActionListener(e -> openInsertDialogWithData());
         
@@ -68,7 +67,6 @@ public class CourtCaseInternalFrame extends JPanel {
             }
             
             CourtCaseDTO selectedCase = currentCases.get(selectedRow);
-            
             UpdateCaseDialog dialog = new UpdateCaseDialog(SwingUtilities.getWindowAncestor(this), selectedCase);
             dialog.setVisible(true);
 
@@ -77,27 +75,41 @@ public class CourtCaseInternalFrame extends JPanel {
             }
         });
         
-        // --- NEW DOSSIER LOGIC ---
         btnViewDossier.addActionListener(e -> {
             int selectedRow = caseTable.getSelectedRow();
-            
-            // Check if they actually clicked a row
             if (selectedRow == -1) {
                 JOptionPane.showMessageDialog(this, "Please select a case from the table to view its dossier.", "No Case Selected", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
-            // Grab the specific DTO from our cached list based on the row they clicked
             CourtCaseDTO selectedCase = currentCases.get(selectedRow);
-            
-            // Open the new Dossier Dialog!
             ViewDossierDialog dialog = new ViewDossierDialog(SwingUtilities.getWindowAncestor(this), selectedCase);
             dialog.setVisible(true);
+        });
+
+        // --- NEW DELETE LOGIC ---
+        btnDeleteCase.addActionListener(e -> {
+            int selectedRow = caseTable.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(this, "Please select a case from the table to delete.", "No Case Selected", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            CourtCaseDTO selectedCase = currentCases.get(selectedRow);
+            
+            // The "Are you sure?" warning box
+            int confirm = JOptionPane.showConfirmDialog(this, 
+                "CRITICAL WARNING: Are you sure you want to permanently delete Case " + selectedCase.caseNumber() + "?\nThis action cannot be undone.", 
+                "Confirm Case Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                
+            if (confirm == JOptionPane.YES_OPTION) {
+                deleteCaseToServer(selectedCase.caseNumber());
+            }
         });
 
         controlPanel.add(btnFileCase);
         controlPanel.add(btnUpdateStatus);
         controlPanel.add(btnViewDossier);
+        controlPanel.add(btnDeleteCase); // Add to the screen
 
         add(controlPanel, BorderLayout.SOUTH);
     }
@@ -120,7 +132,6 @@ public class CourtCaseInternalFrame extends JPanel {
             @Override
             protected void done() {
                 try {
-                    // Update our cache!
                     currentCases = get();
                     tableModel.setRowCount(0);
 
@@ -233,9 +244,41 @@ public class CourtCaseInternalFrame extends JPanel {
                 try {
                     get();
                     JOptionPane.showMessageDialog(CourtCaseInternalFrame.this, "Case Status updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    loadCasesFromDatabase(); // Refresh the table so the new order shows!
+                    loadCasesFromDatabase(); 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(CourtCaseInternalFrame.this, "Failed to update Case: " + e.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        };
+        worker.execute();
+    }
+    
+    // --- NEW METHOD FOR DELETING OVER THE NETWORK ---
+    private void deleteCaseToServer(String caseNumber) {
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                // Send the String caseNumber to the server
+                NetworkMessage request = new NetworkMessage(NetworkMessage.Command.DELETE_CASE, caseNumber);
+                NetworkMessage response = apiClient.sendRequest(request);
+
+                if (response.getCommand() != NetworkMessage.Command.RESPONSE_OK) {
+                    throw new Exception(response.getPayload().toString());
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                setCursor(Cursor.getDefaultCursor());
+                try {
+                    get();
+                    JOptionPane.showMessageDialog(CourtCaseInternalFrame.this, "Court Case permanently deleted.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                    loadCasesFromDatabase(); // Refresh the table so it disappears!
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(CourtCaseInternalFrame.this, "Failed to delete Case: " + e.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         };
