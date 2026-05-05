@@ -15,11 +15,13 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
 
     private static final Logger logger = LogManager.getLogger(HibernateCaseDAO.class);
 
+    @Override
     public boolean insertCase(CourtCase courtCase) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             try {
-                session.persist(courtCase); 
+                // FIX: Changed from persist() to merge() to handle detached Judges and Parties!
+                session.merge(courtCase); 
                 transaction.commit();
                 logger.info("Hibernate successfully inserted new court case.");
                 return true;
@@ -31,6 +33,37 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
         }
     }
 
+    @Override
+    public boolean updateParty(InvolvedParty party) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.merge(party); 
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            logger.error("Hibernate failed to update party: " + e.getMessage(), e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteParty(int partyId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            InvolvedParty party = session.get(InvolvedParty.class, partyId);
+            if (party != null) {
+                session.remove(party);
+                transaction.commit();
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            logger.error("Hibernate failed to delete party: " + e.getMessage(), e);
+            return false;
+        }
+    }
+    
+    @Override
     public CourtCase getCaseByNumber(String caseNumber) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM CourtCase c WHERE c.caseNumber = :caseNum";
@@ -43,6 +76,7 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
         }
     }
 
+    @Override
     public List<CourtCase> getAllCases() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("FROM CourtCase", CourtCase.class).list();
@@ -52,6 +86,7 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
         }
     }
 
+    @Override
     public boolean updateCase(CourtCase courtCase) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -68,6 +103,7 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
         }
     }
 
+    @Override
     public boolean deleteCase(String caseNumber) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -111,37 +147,66 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
     }
     
     @Override
-    public void saveCase(vtdi.keniel.filems.models.CourtCase courtCase) {
-        try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+    public void saveCase(CourtCase courtCase) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.persist(courtCase); // Persist is the optimal Hibernate command for new records
+            // FIX: Also changed to merge here just in case!
+            session.merge(courtCase);
             session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error saving case: " + e.getMessage(), e);
         }
     }
     
     @Override
-    public void saveParty(vtdi.keniel.filems.models.InvolvedParty party) {
-        try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+    public void saveParty(InvolvedParty party) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.persist(party);
             session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error saving party: " + e.getMessage(), e);
         }
     }
     
     @Override
     public void saveJudge(Judge judge) {
-        // Updated to use your project's specific HibernateUtil class
-        try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.persist(judge); 
             session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error saving judge: " + e.getMessage(), e);
         }
     }
     
+    @Override
+    public boolean updateJudge(Judge judge) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.merge(judge); 
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            logger.error("Hibernate failed to update judge: " + e.getMessage(), e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteJudge(int judgeId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Judge judge = session.get(Judge.class, judgeId);
+            if (judge != null) {
+                session.remove(judge);
+                transaction.commit();
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            logger.error("Hibernate failed to delete judge: " + e.getMessage(), e);
+            return false;
+        }
+    }
 }

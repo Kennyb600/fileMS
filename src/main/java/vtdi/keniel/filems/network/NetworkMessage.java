@@ -23,6 +23,10 @@ public class NetworkMessage implements Serializable {
         GET_ALL_PARTIES,
         INSERT_JUDGE,
         INSERT_PARTY,
+        UPDATE_PARTY,
+        DELETE_PARTY,
+        UPDATE_JUDGE,
+        DELETE_JUDGE,
         
         RESPONSE_OK,     // Sent by server upon success
         RESPONSE_ERROR   // Sent by server upon failure

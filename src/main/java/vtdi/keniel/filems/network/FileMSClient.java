@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import vtdi.keniel.filems.models.CourtCase;
+import vtdi.keniel.filems.dto.CourtCaseDTO;
 
 /**
  * The TCP/IP Client that communicates with the FileMSServer.
@@ -69,12 +69,13 @@ public class FileMSClient {
         if (response.getCommand() == NetworkMessage.Command.RESPONSE_OK) {
             System.out.println("\nSUCCESS! The server sent back the following data:");
             
-            // Cast the payload back to a List of CourtCases
+            // Cast the payload back to a List of CourtCaseDTOs (Now using the DTO Shield!)
             @SuppressWarnings("unchecked")
-            List<CourtCase> cases = (List<CourtCase>) response.getPayload();
+            List<CourtCaseDTO> cases = (List<CourtCaseDTO>) response.getPayload();
             
-            for (CourtCase c : cases) {
-                System.out.println(" - Case Number: " + c.getCaseNumber() + " | Order: " + c.getCourtOrder());
+            for (CourtCaseDTO c : cases) {
+                // Because it's a DTO record, we use the accessor methods directly (e.g., c.caseNumber() instead of getCaseNumber())
+                System.out.println(" - Case Number: " + c.caseNumber() + " | Order: " + c.courtOrder());
             }
         } else {
             System.out.println("\nFAILED: Server returned an error - " + response.getPayload());

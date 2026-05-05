@@ -13,7 +13,12 @@ public interface ICourtCaseDAO {
     List<InvolvedParty> getAllParties();
     boolean updateCase(CourtCase courtCase);
     boolean deleteCase(String caseNumber);
+    boolean updateParty(InvolvedParty party);
+    boolean deleteParty(int partyId);
+    boolean updateJudge(Judge judge);
+    boolean deleteJudge(int judgeId);
+    
     void saveJudge(Judge judge);
-    void saveCase(vtdi.keniel.filems.models.CourtCase courtCase);
-    void saveParty(vtdi.keniel.filems.models.InvolvedParty party);
-}
+    void saveCase(CourtCase courtCase);
+    void saveParty(InvolvedParty party); 
+}   

@@ -214,4 +214,24 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     public void saveCase(vtdi.keniel.filems.models.CourtCase courtCase) {
         throw new UnsupportedOperationException("Not supported yet. Using HibernateCaseDAO instead.");
     }
+    
+    @Override
+    public boolean updateParty(vtdi.keniel.filems.models.InvolvedParty party) {
+        throw new UnsupportedOperationException("Not implemented in legacy JDBC DAO.");
+    }
+
+    @Override
+    public boolean deleteParty(int partyId) {
+        throw new UnsupportedOperationException("Not implemented in legacy JDBC DAO.");
+    }
+    
+    @Override
+    public boolean updateJudge(vtdi.keniel.filems.models.Judge judge) {
+        throw new UnsupportedOperationException("Not implemented in legacy JDBC DAO.");
+    }
+
+    @Override
+    public boolean deleteJudge(int judgeId) {
+        throw new UnsupportedOperationException("Not implemented in legacy JDBC DAO.");
+    }
 }
