@@ -7,11 +7,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import vtdi.keniel.filems.network.FileMSClient;
 import vtdi.keniel.filems.network.NetworkMessage;
-import vtdi.keniel.filems.models.Judge;
+import vtdi.keniel.filems.dto.JudgeDTO; 
 
-public class JudgeInternalFrame extends JPanel { // Extends JPanel for Tabbed Dashboard
+public class JudgeInternalFrame extends JPanel { 
 
     private static final Logger logger = LogManager.getLogger(JudgeInternalFrame.class);
     private JTable judgeTable;
@@ -20,7 +21,7 @@ public class JudgeInternalFrame extends JPanel { // Extends JPanel for Tabbed Da
 
     public JudgeInternalFrame() {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15)); // Clean padding
+        setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15)); 
         
         try {
             apiClient = new FileMSClient();
@@ -28,7 +29,7 @@ public class JudgeInternalFrame extends JPanel { // Extends JPanel for Tabbed Da
             setupTable();
             setupControlPanel();
             
-            // Auto-load data immediately
+            // Auto-load data asynchronously immediately upon tab creation
             loadJudgesFromDatabase();
             
         } catch (Exception e) {
@@ -44,7 +45,6 @@ public class JudgeInternalFrame extends JPanel { // Extends JPanel for Tabbed Da
         };
         judgeTable = new JTable(tableModel);
         
-        // Add scroll pane to center
         add(new JScrollPane(judgeTable), BorderLayout.CENTER);
     }
 
@@ -55,8 +55,18 @@ public class JudgeInternalFrame extends JPanel { // Extends JPanel for Tabbed Da
         JButton btnUpdate = new JButton("Update Judge");
         JButton btnDelete = new JButton("Delete Judge");
 
-        // Placeholders for future CRUD expansion
-        btnInsert.addActionListener(e -> JOptionPane.showMessageDialog(this, "Insert UI ready. Awaiting backend implementation."));
+        btnInsert.addActionListener(e -> {
+            // Open the modal
+            InsertJudgeDialog dialog = new InsertJudgeDialog(SwingUtilities.getWindowAncestor(this));
+            dialog.setVisible(true);
+
+            // If the user clicked "Save" instead of "Cancel"
+            if (dialog.isApproved()) {
+                JudgeDTO newJudge = dialog.getJudgeDTO();
+                insertJudgeToServer(newJudge); // Fire off the network request
+            }
+        });
+        
         btnUpdate.addActionListener(e -> JOptionPane.showMessageDialog(this, "Update UI ready. Awaiting backend implementation."));
         btnDelete.addActionListener(e -> JOptionPane.showMessageDialog(this, "Delete UI ready. Awaiting backend implementation."));
 
@@ -67,30 +77,93 @@ public class JudgeInternalFrame extends JPanel { // Extends JPanel for Tabbed Da
         add(controlPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Now uses a SwingWorker to fetch data on a background thread.
+     * This prevents the Single Page Application UI from freezing while waiting for the network.
+     */
     private void loadJudgesFromDatabase() {
-        logger.info("Requesting Judge data from server...");
-        try {
-            NetworkMessage request = new NetworkMessage(NetworkMessage.Command.GET_ALL_JUDGES, null);
-            NetworkMessage response = apiClient.sendRequest(request);
+        logger.info("Requesting Judge data from server on background thread...");
+        
+        SwingWorker<List<JudgeDTO>, Void> worker = new SwingWorker<>() {
+            
+            @Override
+            protected List<JudgeDTO> doInBackground() throws Exception {
+                NetworkMessage request = new NetworkMessage(NetworkMessage.Command.GET_ALL_JUDGES, null);
+                NetworkMessage response = apiClient.sendRequest(request);
 
-            if (response.getCommand() == NetworkMessage.Command.RESPONSE_OK) {
-                @SuppressWarnings("unchecked")
-                List<Judge> judges = (List<Judge>) response.getPayload();
-                
-                tableModel.setRowCount(0); // Clear existing rows
-                
-                for (Judge j : judges) {
-                    tableModel.addRow(new Object[]{
-                        j.getId(), 
-                        j.getFullName()
-                    });
+                if (response.getCommand() == NetworkMessage.Command.RESPONSE_OK) {
+                    @SuppressWarnings("unchecked")
+                    List<JudgeDTO> judges = (List<JudgeDTO>) response.getPayload();
+                    return judges;
+                } else {
+                    throw new Exception(response.getPayload().toString());
                 }
-                logger.info("Successfully loaded " + judges.size() + " judges.");
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed to load judges: " + response.getPayload(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
-            logger.error("Exception loading judges: " + e.getMessage(), e);
-        }
-    }
+
+            @Override
+            protected void done() {
+                try {
+                    List<JudgeDTO> judges = get(); 
+                    
+                    tableModel.setRowCount(0); 
+                    
+                    if (judges != null) {
+                        for (JudgeDTO j : judges) {
+                            String fullName = "Hon. " + j.firstName() + " " + j.lastName();
+                            
+                            tableModel.addRow(new Object[]{
+                                j.id(), 
+                                fullName
+                            });
+                        }
+                        logger.info("Successfully loaded " + judges.size() + " judges to the UI.");
+                    }
+                } catch (Exception e) {
+                    logger.error("Exception loading judges: " + e.getMessage(), e);
+                    JOptionPane.showMessageDialog(JudgeInternalFrame.this, 
+                            "Failed to load judges: " + e.getCause().getMessage(), 
+                            "Network Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        };
+        
+        // Fire off the background thread!
+        worker.execute();
+    } // <-- Properly closed method!
+
+    /**
+     * Sends the new JudgeDTO to the server asynchronously.
+     */
+    private void insertJudgeToServer(JudgeDTO newJudge) {
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                NetworkMessage request = new NetworkMessage(NetworkMessage.Command.INSERT_JUDGE, newJudge);
+                NetworkMessage response = apiClient.sendRequest(request);
+
+                if (response.getCommand() != NetworkMessage.Command.RESPONSE_OK) {
+                    throw new Exception(response.getPayload().toString());
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    get(); 
+                    JOptionPane.showMessageDialog(JudgeInternalFrame.this, "Judge registered successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    // The magic touch: refresh the table immediately!
+                    loadJudgesFromDatabase();
+                    
+                } catch (Exception e) {
+                    logger.error("Exception inserting judge: " + e.getMessage(), e);
+                    JOptionPane.showMessageDialog(JudgeInternalFrame.this, 
+                            "Failed to register Judge: " + e.getCause().getMessage(), 
+                            "Network Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        };
+        worker.execute();
+    } // <-- Properly closed method!
 }

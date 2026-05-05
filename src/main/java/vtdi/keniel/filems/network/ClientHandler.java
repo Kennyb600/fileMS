@@ -4,140 +4,142 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import vtdi.keniel.filems.models.CourtCase;
-import vtdi.keniel.filems.dao.ICourtCaseDAO;
+import java.util.List;
 
+import vtdi.keniel.filems.dao.ICourtCaseDAO;
+import vtdi.keniel.filems.models.CourtCase;
+import vtdi.keniel.filems.models.Judge;
+import vtdi.keniel.filems.models.InvolvedParty;
+import vtdi.keniel.filems.dto.CourtCaseDTO;
+import vtdi.keniel.filems.dto.JudgeDTO;
+import vtdi.keniel.filems.dto.InvolvedPartyDTO;
+import vtdi.keniel.filems.dto.EntityMapper;
+
+/**
+ * Dedicated thread for handling continuous client socket connections.
+ * Now utilizing the DTO mapping layer for secure, proxy-free network serialization.
+ */
 public class ClientHandler implements Runnable {
 
-    private static final Logger logger = LogManager.getLogger(ClientHandler.class);
-    
-    private Socket socket;
-    private ObjectOutputStream out;
+    private final Socket clientSocket;
+    private final ICourtCaseDAO courtCaseDAO;
     private ObjectInputStream in;
-    
-    private ICourtCaseDAO caseDAO;
+    private ObjectOutputStream out;
 
-    public ClientHandler(Socket socket, ICourtCaseDAO caseDAO) {
-        this.socket = socket;
-        this.caseDAO = caseDAO;
+    public ClientHandler(Socket clientSocket, ICourtCaseDAO courtCaseDAO) {
+        this.clientSocket = clientSocket;
+        this.courtCaseDAO = courtCaseDAO;
     }
 
     @Override
     public void run() {
         try {
-            out = new ObjectOutputStream(socket.getOutputStream());
+            // Output MUST be initialized first to flush network headers
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
             out.flush();
-            in = new ObjectInputStream(socket.getInputStream());
-            
-            logger.info("Input/Output streams established for client: " + socket.getInetAddress().getHostAddress());
+            in = new ObjectInputStream(clientSocket.getInputStream());
 
-            while (true) {
-                NetworkMessage request = (NetworkMessage) in.readObject();
-                logger.info("Received request command: " + request.getCommand());
+            System.out.println("Client connected: " + clientSocket.getInetAddress());
 
-                NetworkMessage response = processRequest(request);
-                
-                out.writeObject(response);
-                out.flush();
-            }
-
-        } catch (java.io.EOFException e) {
-            logger.info("Client disconnected gracefully.");
-        } catch (IOException | ClassNotFoundException e) {
-            logger.error("Connection error with client: " + e.getMessage(), e);
-        } finally {
-            closeConnections();
-        }
-    }
-
-    private NetworkMessage processRequest(NetworkMessage request) {
-        try {
-            switch (request.getCommand()) {
-                case GET_ALL_CASES:
-                    logger.info("Processing GET_ALL_CASES command...");
-                    return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, caseDAO.getAllCases());
-                
-                case INSERT_CASE:
-                    logger.info("Processing INSERT_CASE command...");
-                    CourtCase newCase = (CourtCase) request.getPayload();
+            while (!clientSocket.isClosed()) {
+                try {
+                    NetworkMessage request = (NetworkMessage) in.readObject();
                     
-                    boolean success = caseDAO.insertCase(newCase);
-                    if (success) {
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case inserted successfully.");
-                    } else {
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Database insertion failed.");
-                    }
-                
-                case UPDATE_CASE:
-                    try {
-                        CourtCase updatedCase = (CourtCase) request.getPayload();
-                        caseDAO.updateCase(updatedCase); 
-                        
-                        // CHANGED: Logging the Case Number instead of Case ID
-                        logger.info("Successfully updated CourtCase with Number: " + updatedCase.getCaseNumber());
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case updated successfully.");
-                    } catch (Exception e) {
-                        logger.error("Fatal error during UPDATE_CASE operation.", e);
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Failed to update case: " + e.getMessage());
-                    }
+                    if (request == null) break;
 
-                case DELETE_CASE:
-                    try {
-                        String caseNumberToDelete = (String) request.getPayload();
-                        
-                        // CHANGED: Respecting the boolean returned by the DAO
-                        boolean isDeleted = caseDAO.deleteCase(caseNumberToDelete); 
+                    NetworkMessage response;
+
+                    switch (request.getCommand()) { 
+                        case GET_ALL_CASES:
+                            List<CourtCase> cases = courtCaseDAO.getAllCases();
+                            // Pass through the DTO Shield
+                            List<CourtCaseDTO> caseDTOs = EntityMapper.toCourtCaseDTOList(cases);
+                            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, caseDTOs);
+                            break;
+
+                        case GET_ALL_JUDGES:
+                            List<Judge> judges = courtCaseDAO.getAllJudges();
+                            // Pass through the DTO Shield
+                            List<JudgeDTO> judgeDTOs = EntityMapper.toJudgeDTOList(judges);
+                            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, judgeDTOs);
+                            break;
+
+                        case GET_ALL_PARTIES:
+                            List<InvolvedParty> parties = courtCaseDAO.getAllParties();
+                            // Pass through the DTO Shield
+                            List<InvolvedPartyDTO> partyDTOs = EntityMapper.toInvolvedPartyDTOList(parties);
+                            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, partyDTOs);
+                            break;
+
+                        default:
+                            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Unknown request type.");
+                            break;
+                            
+                        case INSERT_JUDGE:
+        if (request.getPayload() instanceof JudgeDTO) {
+            JudgeDTO incomingDTO = (JudgeDTO) request.getPayload();
+            // 1. Translate DTO to Entity
+            Judge newJudge = EntityMapper.toJudgeEntity(incomingDTO);
+            // 2. Save to Database
+            courtCaseDAO.saveJudge(newJudge);
+            // 3. Send Success Response
+            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Judge added successfully.");
+        } else {
+            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Invalid payload.");
+        }
+        break;
+                    
+                    
+                    case INSERT_CASE:
+        if (request.getPayload() instanceof CourtCaseDTO) {
+            CourtCaseDTO incomingDTO = (CourtCaseDTO) request.getPayload();
+            // 1. Translate DTO back to Entity
+            CourtCase newCase = EntityMapper.toCourtCaseEntity(incomingDTO);
+            // 2. Save to Database
+            courtCaseDAO.saveCase(newCase);
+            // 3. Send Success Response
+            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Court Case filed successfully.");
+        } else {
+            response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Invalid payload for INSERT_CASE.");
+        }
+        break;
         
-                        if (isDeleted) {
-                            logger.info("Successfully deleted CourtCase with Number: " + caseNumberToDelete);
-                            return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Case deleted successfully.");
-                        } else {
-                            logger.warn("DAO failed to delete case: " + caseNumberToDelete);
-                            return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Case not found in database.");
-                        }
-                    } catch (Exception e) {
-                        logger.error("Fatal error during DELETE_CASE operation for Number: " + request.getPayload(), e);
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Failed to delete case: " + e.getMessage());
+        case INSERT_PARTY:
+                            if (request.getPayload() instanceof InvolvedPartyDTO) {
+                                InvolvedPartyDTO incomingDTO = (InvolvedPartyDTO) request.getPayload();
+                                // Translate and Save
+                                InvolvedParty newParty = EntityMapper.toInvolvedPartyEntity(incomingDTO);
+                                courtCaseDAO.saveParty(newParty);
+                                response = new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, "Party registered successfully.");
+                            } else {
+                                response = new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Invalid payload.");
+                            }
+                            break;            
+                    
                     }
-                    
-                case GET_ALL_JUDGES:
-                    try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
-                    java.util.List<vtdi.keniel.filems.models.Judge> judges = session.createQuery("FROM Judge", vtdi.keniel.filems.models.Judge.class).list();
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, judges); 
-                } catch (Exception e) {
-                    logger.error("Error fetching judges: " + e.getMessage(), e);
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, e.getMessage());
-                }
+                    out.writeObject(response);
+                    out.flush();
 
-                case GET_ALL_PARTIES:
-                    try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
-                    java.util.List<vtdi.keniel.filems.models.InvolvedParty> parties = session.createQuery("FROM InvolvedParty", vtdi.keniel.filems.models.InvolvedParty.class).list();
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_OK, parties);
-                } catch (Exception e) {
-                    logger.error("Error fetching parties: " + e.getMessage(), e);
-                        return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, e.getMessage());
+                } catch (ClassNotFoundException e) {
+                    System.err.println("Received unidentifiable object from client.");
+                    break; 
+                } catch (IOException e) {
+                    System.out.println("Client disconnected gracefully.");
+                    break; 
                 }
-                    
-                default:
-                    logger.warn("Received unknown command from client: " + request.getCommand());
-                    return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Unknown command.");
             }
-        } catch (Exception e) {
-            logger.fatal("Critical failure in ClientHandler switch block processing.", e);
-            return new NetworkMessage(NetworkMessage.Command.RESPONSE_ERROR, "Critical server error processing request.");
-        }
-    }
 
-    private void closeConnections() {
-        try {
-            if (in != null) in.close();
-            if (out != null) out.close();
-            if (socket != null && !socket.isClosed()) socket.close();
-            logger.info("Cleaned up and closed connections for client.");
         } catch (IOException e) {
-            logger.error("Error while closing client connections: " + e.getMessage(), e);
+            System.err.println("Error initializing streams: " + e.getMessage());
+        } finally {
+            try {
+                if (in != null) in.close();
+                if (out != null) out.close();
+                if (clientSocket != null && !clientSocket.isClosed()) clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
+    

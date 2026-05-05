@@ -187,6 +187,12 @@ public class CourtCaseDAO implements ICourtCaseDAO {
     // --------------------------------------------------------
     // SATISFYING INTERFACE FOR UNUSED JDBC METHODS
     // --------------------------------------------------------
+    
+    @Override
+    public void saveJudge(vtdi.keniel.filems.models.Judge judge) {
+        throw new UnsupportedOperationException("Not supported yet. Using HibernateCaseDAO instead.");
+    }
+    
     @Override
     public List<Judge> getAllJudges() {
         logger.warn("getAllJudges not implemented in JDBC. System is using HibernateCaseDAO.");
@@ -199,4 +205,13 @@ public class CourtCaseDAO implements ICourtCaseDAO {
         return new ArrayList<>();
     }
     
+    @Override
+    public void saveParty(vtdi.keniel.filems.models.InvolvedParty party) {
+        throw new UnsupportedOperationException("Not supported yet. Using HibernateCaseDAO instead.");
+    }
+    
+    @Override
+    public void saveCase(vtdi.keniel.filems.models.CourtCase courtCase) {
+        throw new UnsupportedOperationException("Not supported yet. Using HibernateCaseDAO instead.");
+    }
 }

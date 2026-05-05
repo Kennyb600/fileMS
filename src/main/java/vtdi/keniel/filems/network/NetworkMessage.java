@@ -21,6 +21,8 @@ public class NetworkMessage implements Serializable {
         GET_ALL_CASES,
         GET_ALL_JUDGES,
         GET_ALL_PARTIES,
+        INSERT_JUDGE,
+        INSERT_PARTY,
         
         RESPONSE_OK,     // Sent by server upon success
         RESPONSE_ERROR   // Sent by server upon failure

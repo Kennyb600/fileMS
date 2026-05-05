@@ -16,6 +16,22 @@
 
         <property name="hbm2ddl.auto">update</property>
         
+        <!-- Tell Hibernate to use HikariCP as the connection provider -->
+        <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>
+
+        <!-- HikariCP Configuration Settings -->
+        <!-- How many connections should stay open and ready (10 is standard for small/medium apps) -->
+        <property name="hibernate.hikari.maximumPoolSize">10</property>
+        
+        <!-- How long to wait for a connection before giving up (30 seconds) -->
+        <property name="hibernate.hikari.connectionTimeout">30000</property>
+        
+        <!-- How long a connection can sit idle in the pool (10 minutes) -->
+        <property name="hibernate.hikari.idleTimeout">600000</property>
+        
+        <!-- Maximum lifetime of a connection in the pool (30 minutes) -->
+        <property name="hibernate.hikari.maxLifetime">1800000</property>
+        
         <mapping class="vtdi.keniel.filems.models.InvolvedParty"/>
         <mapping class="vtdi.keniel.filems.models.Judge"/>
         <mapping class="vtdi.keniel.filems.models.CourtCase"/>

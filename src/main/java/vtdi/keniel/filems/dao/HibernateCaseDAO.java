@@ -109,4 +109,39 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
             return null;
         }
     }
+    
+    @Override
+    public void saveCase(vtdi.keniel.filems.models.CourtCase courtCase) {
+        try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.persist(courtCase); // Persist is the optimal Hibernate command for new records
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Override
+    public void saveParty(vtdi.keniel.filems.models.InvolvedParty party) {
+        try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.persist(party);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Override
+    public void saveJudge(Judge judge) {
+        // Updated to use your project's specific HibernateUtil class
+        try (org.hibernate.Session session = vtdi.keniel.filems.utils.HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.persist(judge); 
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
