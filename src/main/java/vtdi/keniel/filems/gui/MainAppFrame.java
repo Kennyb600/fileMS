@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 public class MainAppFrame extends JFrame {
 
@@ -77,17 +78,6 @@ public class MainAppFrame extends JFrame {
         menuBar.add(navMenu);
         setJMenuBar(menuBar);
     }
-    
-    public static void main(String[] args) {
-        // Apply the modern system theme before launching
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
-            logger.warn("Could not set system look and feel.", ex);
-        }
-
-        SwingUtilities.invokeLater(() -> {
-            new MainAppFrame().setVisible(true);
-        });
-    }
+   
+   
 }

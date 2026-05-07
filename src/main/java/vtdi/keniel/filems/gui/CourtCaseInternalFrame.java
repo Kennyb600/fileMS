@@ -1,11 +1,10 @@
 package vtdi.keniel.filems.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Cursor; 
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +14,12 @@ import vtdi.keniel.filems.dto.JudgeDTO;
 import vtdi.keniel.filems.network.FileMSClient;
 import vtdi.keniel.filems.network.NetworkMessage;
 
+// JFreeChart Imports
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+
 public class CourtCaseInternalFrame extends JPanel {
 
     private static final Logger logger = LogManager.getLogger(CourtCaseInternalFrame.class);
@@ -22,6 +27,7 @@ public class CourtCaseInternalFrame extends JPanel {
     private DefaultTableModel tableModel;
     private FileMSClient apiClient;
     
+    private TableRowSorter<DefaultTableModel> rowSorter; 
     private List<CourtCaseDTO> currentCases; 
 
     public CourtCaseInternalFrame() {
@@ -31,6 +37,7 @@ public class CourtCaseInternalFrame extends JPanel {
         try {
             apiClient = new FileMSClient();
             setupTable();
+            setupSearchBar(); 
             setupControlPanel();
             loadCasesFromDatabase(); 
         } catch (Exception e) {
@@ -46,72 +53,132 @@ public class CourtCaseInternalFrame extends JPanel {
         };
         caseTable = new JTable(tableModel);
         caseTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        rowSorter = new TableRowSorter<>(tableModel);
+        caseTable.setRowSorter(rowSorter);
+        
         add(new JScrollPane(caseTable), BorderLayout.CENTER);
+    }
+    
+    private void setupSearchBar() {
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        searchPanel.add(new JLabel("Search Cases: "));
+        
+        JTextField txtSearch = new JTextField(30);
+        searchPanel.add(txtSearch);
+        
+        txtSearch.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { filter(); }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) { filter(); }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) { filter(); }
+            
+            private void filter() {
+                String text = txtSearch.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+        });
+        
+        add(searchPanel, BorderLayout.NORTH);
     }
 
     private void setupControlPanel() {
-        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel buttonGrid = new JPanel(new GridLayout(1, 6, 10, 0));
+        buttonGrid.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         JButton btnFileCase = new JButton("File New Case");
-        JButton btnUpdateStatus = new JButton("Update Status/Order");
-        JButton btnViewDossier = new JButton("View Full Dossier");
-        JButton btnDeleteCase = new JButton("Delete Case"); // NEW BUTTON!
+        JButton btnUpdateStatus = new JButton("Update Status");
+        JButton btnViewDossier = new JButton("View Dossier");
+        JButton btnDeleteCase = new JButton("Delete Case"); 
+        JButton btnExport = new JButton("Export CSV");
+        JButton btnGraph = new JButton("View Statistics");
 
+        // --- BUTTON LISTENERS ---
+        btnGraph.addActionListener(e -> showCaseloadGraph());
+        btnExport.addActionListener(e -> exportTableToCSV());
         btnFileCase.addActionListener(e -> openInsertDialogWithData());
         
         btnUpdateStatus.addActionListener(e -> {
-            int selectedRow = caseTable.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Please select a case from the table to update.", "No Case Selected", JOptionPane.WARNING_MESSAGE);
+            int viewRow = caseTable.getSelectedRow();
+            if (viewRow == -1) {
+                JOptionPane.showMessageDialog(this, "Select a case first.");
                 return;
             }
+            int modelRow = caseTable.convertRowIndexToModel(viewRow);
+            CourtCaseDTO selectedCase = currentCases.get(modelRow);
             
-            CourtCaseDTO selectedCase = currentCases.get(selectedRow);
+            // THIS WAS THE MISSING PIECE: Open the Dialog so you can actually edit it!
             UpdateCaseDialog dialog = new UpdateCaseDialog(SwingUtilities.getWindowAncestor(this), selectedCase);
             dialog.setVisible(true);
-
+            
+            // Only send it to the server if the user clicked "Save"
             if (dialog.isApproved()) {
                 updateCaseToServer(dialog.getUpdatedCase());
             }
         });
         
         btnViewDossier.addActionListener(e -> {
-            int selectedRow = caseTable.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Please select a case from the table to view its dossier.", "No Case Selected", JOptionPane.WARNING_MESSAGE);
+            int viewRow = caseTable.getSelectedRow();
+            if (viewRow == -1) {
+                JOptionPane.showMessageDialog(this, "Select a case first.");
                 return;
             }
-            CourtCaseDTO selectedCase = currentCases.get(selectedRow);
-            ViewDossierDialog dialog = new ViewDossierDialog(SwingUtilities.getWindowAncestor(this), selectedCase);
-            dialog.setVisible(true);
+            int modelRow = caseTable.convertRowIndexToModel(viewRow);
+            new ViewDossierDialog(SwingUtilities.getWindowAncestor(this), currentCases.get(modelRow)).setVisible(true);
         });
 
-        // --- NEW DELETE LOGIC ---
         btnDeleteCase.addActionListener(e -> {
-            int selectedRow = caseTable.getSelectedRow();
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Please select a case from the table to delete.", "No Case Selected", JOptionPane.WARNING_MESSAGE);
+            int viewRow = caseTable.getSelectedRow();
+            if (viewRow == -1) {
+                JOptionPane.showMessageDialog(this, "Select a case first.");
                 return;
             }
-            
-            CourtCaseDTO selectedCase = currentCases.get(selectedRow);
-            
-            // The "Are you sure?" warning box
-            int confirm = JOptionPane.showConfirmDialog(this, 
-                "CRITICAL WARNING: Are you sure you want to permanently delete Case " + selectedCase.caseNumber() + "?\nThis action cannot be undone.", 
-                "Confirm Case Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                
-            if (confirm == JOptionPane.YES_OPTION) {
-                deleteCaseToServer(selectedCase.caseNumber());
-            }
+            int modelRow = caseTable.convertRowIndexToModel(viewRow);
+            CourtCaseDTO selectedCase = currentCases.get(modelRow);
+            int confirm = JOptionPane.showConfirmDialog(this, "Delete Case " + selectedCase.caseNumber() + "?", "Confirm", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) deleteCaseToServer(selectedCase.caseNumber());
         });
 
-        controlPanel.add(btnFileCase);
-        controlPanel.add(btnUpdateStatus);
-        controlPanel.add(btnViewDossier);
-        controlPanel.add(btnDeleteCase); // Add to the screen
+        buttonGrid.add(btnFileCase);
+        buttonGrid.add(btnUpdateStatus);
+        buttonGrid.add(btnViewDossier);
+        buttonGrid.add(btnDeleteCase); 
+        buttonGrid.add(btnExport);
+        buttonGrid.add(btnGraph);
 
-        add(controlPanel, BorderLayout.SOUTH);
+        add(buttonGrid, BorderLayout.SOUTH);
+    }
+
+    private void showCaseloadGraph() {
+        if (currentCases == null || currentCases.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No data available for graph.", "No Data", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+        java.util.Map<String, Integer> counts = new java.util.HashMap<>();
+        
+        for (CourtCaseDTO c : currentCases) {
+            String judgeName = (c.judge() != null) ? "Hon. " + c.judge().lastName() : "Unassigned";
+            counts.put(judgeName, counts.getOrDefault(judgeName, 0) + 1);
+        }
+
+        counts.forEach(dataset::setValue);
+
+        JFreeChart chart = ChartFactory.createPieChart("Current Caseload by Judge", dataset, true, true, false);
+
+        JDialog chartDialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Caseload Statistics", true);
+        chartDialog.setLayout(new BorderLayout());
+        chartDialog.add(new ChartPanel(chart), BorderLayout.CENTER);
+        chartDialog.setSize(600, 500);
+        chartDialog.setLocationRelativeTo(this);
+        chartDialog.setVisible(true);
     }
 
     private void loadCasesFromDatabase() {
@@ -253,14 +320,12 @@ public class CourtCaseInternalFrame extends JPanel {
         worker.execute();
     }
     
-    // --- NEW METHOD FOR DELETING OVER THE NETWORK ---
     private void deleteCaseToServer(String caseNumber) {
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {
-                // Send the String caseNumber to the server
                 NetworkMessage request = new NetworkMessage(NetworkMessage.Command.DELETE_CASE, caseNumber);
                 NetworkMessage response = apiClient.sendRequest(request);
 
@@ -276,12 +341,48 @@ public class CourtCaseInternalFrame extends JPanel {
                 try {
                     get();
                     JOptionPane.showMessageDialog(CourtCaseInternalFrame.this, "Court Case permanently deleted.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
-                    loadCasesFromDatabase(); // Refresh the table so it disappears!
+                    loadCasesFromDatabase(); 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(CourtCaseInternalFrame.this, "Failed to delete Case: " + e.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         };
         worker.execute();
+    }
+    
+    private void exportTableToCSV() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save Report As...");
+        fileChooser.setSelectedFile(new java.io.File("Court_Cases_Report.csv"));
+
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            java.io.File fileToSave = fileChooser.getSelectedFile();
+
+            try (java.io.FileWriter fw = new java.io.FileWriter(fileToSave);
+                 java.io.BufferedWriter bw = new java.io.BufferedWriter(fw)) {
+
+                for (int i = 0; i < caseTable.getColumnCount(); i++) {
+                    bw.write(caseTable.getColumnName(i) + ",");
+                }
+                bw.newLine();
+
+                for (int row = 0; row < caseTable.getRowCount(); row++) {
+                    for (int col = 0; col < caseTable.getColumnCount(); col++) {
+                        Object value = caseTable.getValueAt(row, col);
+                        String cellData = value != null ? value.toString().replace(",", ";") : "";
+                        bw.write(cellData + ",");
+                    }
+                    bw.newLine();
+                }
+
+                JOptionPane.showMessageDialog(this, "Report successfully exported to:\n" + fileToSave.getAbsolutePath(), "Export Complete", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (Exception ex) {
+                logger.error("Error exporting report: " + ex.getMessage(), ex);
+                JOptionPane.showMessageDialog(this, "Failed to export report: " + ex.getMessage(), "Export Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }
