@@ -20,7 +20,6 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             try {
-                // FIX: Changed from persist() to merge() to handle detached Judges and Parties!
                 session.merge(courtCase); 
                 transaction.commit();
                 logger.info("Hibernate successfully inserted new court case.");
@@ -150,7 +149,6 @@ public class HibernateCaseDAO implements ICourtCaseDAO {
     public void saveCase(CourtCase courtCase) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            // FIX: Also changed to merge here just in case!
             session.merge(courtCase);
             session.getTransaction().commit();
         } catch (Exception e) {

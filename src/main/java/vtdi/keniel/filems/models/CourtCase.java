@@ -13,7 +13,7 @@ public class CourtCase implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger(CourtCase.class);
 
-    // caseId has been removed. caseNumber is now the Primary Key!
+   
     @Id
     @Column(name = "case_number", nullable = false)
     private String caseNumber;

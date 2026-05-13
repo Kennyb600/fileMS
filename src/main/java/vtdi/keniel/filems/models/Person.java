@@ -32,7 +32,7 @@ public abstract class Person implements Serializable {
         logger.info("Instantiated a new Person object: " + firstName + " " + lastName);
     }
 
-    // --- THE SMART SETTER ---
+    // --- THE SETTER ---
     // Takes the single text box string from the GUI and splits it for the database
     public void setName(String fullName) {
         if (fullName != null && fullName.contains(" ")) {
