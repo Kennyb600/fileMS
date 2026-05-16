@@ -2,116 +2,226 @@ package vtdi.keniel.filems.gui;
 
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+import java.util.List;
 import javax.swing.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import vtdi.keniel.filems.dto.CourtCaseDTO;
+import vtdi.keniel.filems.dto.InvolvedPartyDTO;
+import vtdi.keniel.filems.dto.JudgeDTO;
 
 public class UpdateCaseDialog extends JDialog {
 
+    private static final Logger logger = LogManager.getLogger(UpdateCaseDialog.class);
+    
     private CourtCaseDTO originalCase;
-    private CourtCaseDTO updatedCase = null;
+    private CourtCaseDTO updatedCase;
     private boolean approved = false;
+    private String userRole;
 
-    private JTextField txtOrderDate;
+    private JTextField txtCaseNumber;
+    private JComboBox<JudgeItem> cmbJudge;
+    private JComboBox<PartyItem> cmbApplicant;
+    private JComboBox<PartyItem> cmbRespondent;
     private JTextArea txtCourtOrder;
+    
+    private List<JudgeDTO> availableJudges;
+    private List<InvolvedPartyDTO> availableParties;
 
-    public UpdateCaseDialog(Window parent, CourtCaseDTO caseData) {
-        super(parent, "Update Case Status: " + caseData.caseNumber(), Dialog.ModalityType.APPLICATION_MODAL);
-        this.originalCase = caseData;
-        initComponents();
-        setSize(450, 450);
+    public UpdateCaseDialog(Window parent, CourtCaseDTO courtCase, String userRole, List<JudgeDTO> judges, List<InvolvedPartyDTO> parties) {
+        super(parent, "Update Case Status: " + courtCase.caseNumber(), ModalityType.APPLICATION_MODAL);
+        this.originalCase = courtCase;
+        this.userRole = userRole;
+        this.availableJudges = judges;
+        this.availableParties = parties;
+        
+        setSize(550, 600);
         setLocationRelativeTo(parent);
-        setResizable(false);
-    }
-
-    private void initComponents() {
         setLayout(new BorderLayout());
 
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
-        formPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        buildUI();
+        enforceSecurityClearance();
+    }
 
-        // --- Read-Only Identity Details ---
-        JPanel pnlIdentity = new JPanel(new GridLayout(4, 1, 5, 5));
-        pnlIdentity.setBorder(BorderFactory.createTitledBorder("Case Details (Read-Only)"));
-        pnlIdentity.add(new JLabel("Case Number: " + originalCase.caseNumber()));
-        
-        String judgeName = originalCase.judge() != null ? "Hon. " + originalCase.judge().lastName() : "Unassigned";
-        pnlIdentity.add(new JLabel("Judge: " + judgeName));
-        
-        String appName = originalCase.applicant() != null ? originalCase.applicant().firstName() + " " + originalCase.applicant().lastName() : "N/A";
-        pnlIdentity.add(new JLabel("Applicant: " + appName));
-        
-        String resName = originalCase.respondent() != null ? originalCase.respondent().firstName() + " " + originalCase.respondent().lastName() : "N/A";
-        pnlIdentity.add(new JLabel("Respondent: " + resName));
-        
-        formPanel.add(pnlIdentity);
-        formPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+    private void buildUI() {
+        JPanel formPanel = new JPanel(new GridLayout(4, 2, 10, 20));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 10, 30));
 
-        // --- Editable Update Fields ---
-        JPanel pnlUpdate = new JPanel(new BorderLayout(5, 5));
-        pnlUpdate.setBorder(BorderFactory.createTitledBorder("Update Status / Order"));
+        formPanel.add(new JLabel("Case Number:"));
+        txtCaseNumber = new JTextField(originalCase.caseNumber());
+        txtCaseNumber.setEditable(false); 
+        formPanel.add(txtCaseNumber);
 
-        JPanel pnlDate = new JPanel(new BorderLayout(5, 5));
-        pnlDate.add(new JLabel("New Order Date (YYYY-MM-DD):"), BorderLayout.NORTH);
-        txtOrderDate = new JTextField(LocalDate.now().toString()); // Default to today!
-        pnlDate.add(txtOrderDate, BorderLayout.CENTER);
-        pnlUpdate.add(pnlDate, BorderLayout.NORTH);
+        // Judge Dropdown
+        formPanel.add(new JLabel("Presiding Judge:"));
+        JPanel pnlJudge = new JPanel(new BorderLayout(5, 0));
+        cmbJudge = new JComboBox<>();
+        cmbJudge.addItem(new JudgeItem(null));
+        for (JudgeDTO j : availableJudges) {
+            JudgeItem item = new JudgeItem(j);
+            cmbJudge.addItem(item);
+            if (originalCase.judge() != null && originalCase.judge().id() == j.id()) cmbJudge.setSelectedItem(item);
+        }
+        
+        AutoCompleteDecorator.decorate(cmbJudge); 
+        
+        pnlJudge.add(cmbJudge, BorderLayout.CENTER);
+        JButton btnAddJudge = new JButton("+");
+        btnAddJudge.addActionListener(e -> quickAddJudge());
+        pnlJudge.add(btnAddJudge, BorderLayout.EAST);
+        formPanel.add(pnlJudge);
 
-        JPanel pnlOrder = new JPanel(new BorderLayout(5, 5));
-        pnlOrder.add(new JLabel("New Court Order / Status Notes:"), BorderLayout.NORTH);
+        // Applicant Dropdown
+        formPanel.add(new JLabel("Applicant Name:"));
+        JPanel pnlApp = new JPanel(new BorderLayout(5, 0));
+        cmbApplicant = new JComboBox<>();
+        cmbApplicant.addItem(new PartyItem(null));
+        for (InvolvedPartyDTO p : availableParties) {
+            PartyItem item = new PartyItem(p);
+            cmbApplicant.addItem(item);
+            if (originalCase.applicant() != null && originalCase.applicant().id() == p.id()) cmbApplicant.setSelectedItem(item);
+        }
+        
+        AutoCompleteDecorator.decorate(cmbApplicant); 
+        
+        pnlApp.add(cmbApplicant, BorderLayout.CENTER);
+        JButton btnAddApp = new JButton("+");
+        btnAddApp.addActionListener(e -> quickAddParty(cmbApplicant));
+        pnlApp.add(btnAddApp, BorderLayout.EAST);
+        formPanel.add(pnlApp);
+
+        // Respondent Dropdown
+        formPanel.add(new JLabel("Respondent Name:"));
+        JPanel pnlResp = new JPanel(new BorderLayout(5, 0));
+        cmbRespondent = new JComboBox<>();
+        cmbRespondent.addItem(new PartyItem(null));
+        for (InvolvedPartyDTO p : availableParties) {
+            PartyItem item = new PartyItem(p);
+            cmbRespondent.addItem(item);
+            if (originalCase.respondent() != null && originalCase.respondent().id() == p.id()) cmbRespondent.setSelectedItem(item);
+        }
+        
+        AutoCompleteDecorator.decorate(cmbRespondent); 
+        
+        pnlResp.add(cmbRespondent, BorderLayout.CENTER);
+        JButton btnAddResp = new JButton("+");
+        btnAddResp.addActionListener(e -> quickAddParty(cmbRespondent));
+        pnlResp.add(btnAddResp, BorderLayout.EAST);
+        formPanel.add(pnlResp);
+        
+        add(formPanel, BorderLayout.NORTH);
+
+        // Court Order Area
+        JPanel orderPanel = new JPanel(new BorderLayout(0, 5));
+        orderPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 20, 30));
+        orderPanel.add(new JLabel("Court Order / Status Summary:"), BorderLayout.NORTH);
+        
         txtCourtOrder = new JTextArea(originalCase.courtOrder());
         txtCourtOrder.setLineWrap(true);
         txtCourtOrder.setWrapStyleWord(true);
-        pnlOrder.add(new JScrollPane(txtCourtOrder), BorderLayout.CENTER);
-        pnlUpdate.add(pnlOrder, BorderLayout.CENTER);
+        orderPanel.add(new JScrollPane(txtCourtOrder), BorderLayout.CENTER);
+        
+        add(orderPanel, BorderLayout.CENTER);
 
-        formPanel.add(pnlUpdate);
-        add(formPanel, BorderLayout.CENTER);
-
-        // --- Buttons ---
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton btnSave = new JButton("Save Update");
+        // Buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+        JButton btnRequestEdit = new JButton("Request Admin Edit");
+        btnRequestEdit.setForeground(new Color(192, 57, 43)); 
+        btnRequestEdit.addActionListener(e -> submitChangeRequest());
+        
         JButton btnCancel = new JButton("Cancel");
-
-        btnSave.addActionListener(e -> processUpdate());
         btnCancel.addActionListener(e -> dispose());
+        
+        JButton btnSave = new JButton("Save Changes");
+        btnSave.addActionListener(e -> saveChanges());
 
-        buttonPanel.add(btnSave);
+        if (!"ADMIN".equals(userRole)) buttonPanel.add(btnRequestEdit);
         buttonPanel.add(btnCancel);
+        buttonPanel.add(btnSave);
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private void processUpdate() {
-        String newOrder = txtCourtOrder.getText().trim();
-        String dateStr = txtOrderDate.getText().trim();
-
-        if (newOrder.isEmpty() || dateStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Order Date and Status details are required.", "Validation Error", JOptionPane.WARNING_MESSAGE);
-            return;
+    private void enforceSecurityClearance() {
+        if (!"ADMIN".equals(userRole)) {
+            cmbJudge.setEnabled(false);
+            cmbApplicant.setEnabled(false);
+            cmbRespondent.setEnabled(false);
+            
+            for (Component comp : ((JPanel)getContentPane().getComponent(0)).getComponents()) {
+                if (comp instanceof JPanel) {
+                    for (Component inner : ((JPanel)comp).getComponents()) {
+                        if (inner instanceof JButton) inner.setEnabled(false);
+                    }
+                }
+            }
         }
+    }
+    
+    private void quickAddJudge() {
+        String lastName = JOptionPane.showInputDialog(this, "Enter New Judge's Last Name:");
+        if (lastName != null && !lastName.trim().isEmpty()) {
+            JudgeDTO newJudge = new JudgeDTO(999, "New", lastName); 
+            JudgeItem newItem = new JudgeItem(newJudge);
+            cmbJudge.addItem(newItem);
+            cmbJudge.setSelectedItem(newItem);
+        }
+    }
 
-        try {
-            LocalDate newDate = LocalDate.parse(dateStr);
-            
-            // Re-package the DTO: Keep the old entities, but use the new text and date!
-            updatedCase = new CourtCaseDTO(
-                originalCase.caseNumber(), 
-                originalCase.applicant(), 
-                originalCase.respondent(), 
-                originalCase.child(), 
-                originalCase.judge(), 
-                newOrder, 
-                newDate
-            );
-            
-            approved = true;
+    private void quickAddParty(JComboBox<PartyItem> targetDropdown) {
+        String fullName = JOptionPane.showInputDialog(this, "Enter Citizen's Full Name:");
+        if (fullName != null && !fullName.trim().isEmpty()) {
+            String[] parts = fullName.split(" ", 2);
+            // FIXED: Using LocalDate for the required 4th parameter
+            InvolvedPartyDTO newParty = new InvolvedPartyDTO(999, parts[0], parts.length > 1 ? parts[1] : "", LocalDate.now());
+            PartyItem newItem = new PartyItem(newParty);
+            targetDropdown.addItem(newItem);
+            targetDropdown.setSelectedItem(newItem);
+        }
+    }
+    
+    private void submitChangeRequest() {
+        String reason = JOptionPane.showInputDialog(this, "Reason for Admin Modification:", "Request Modification", JOptionPane.QUESTION_MESSAGE);
+        if (reason != null && !reason.trim().isEmpty()) {
+            logger.warn("CHANGE REQUEST - Case {}. Reason: {}", originalCase.caseNumber(), reason);
+            JOptionPane.showMessageDialog(this, "Request securely logged.");
             dispose();
-        } catch (DateTimeParseException ex) {
-            JOptionPane.showMessageDialog(this, "Invalid Date Format. Please use YYYY-MM-DD.", "Validation Error", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    private void saveChanges() {
+        JudgeDTO selectedJudge = ((JudgeItem) cmbJudge.getSelectedItem()).getJudge();
+        InvolvedPartyDTO selectedApplicant = ((PartyItem) cmbApplicant.getSelectedItem()).getParty();
+        InvolvedPartyDTO selectedRespondent = ((PartyItem) cmbRespondent.getSelectedItem()).getParty();
+
+        updatedCase = new CourtCaseDTO(
+            originalCase.caseNumber(),
+            selectedApplicant, 
+            selectedRespondent,
+            originalCase.child(),
+            selectedJudge,
+            txtCourtOrder.getText(),
+            originalCase.orderDate()
+        );
+        
+        approved = true;
+        dispose();
     }
 
     public boolean isApproved() { return approved; }
     public CourtCaseDTO getUpdatedCase() { return updatedCase; }
+
+    private class JudgeItem {
+        private JudgeDTO judge;
+        public JudgeItem(JudgeDTO judge) { this.judge = judge; }
+        public JudgeDTO getJudge() { return judge; }
+        @Override public String toString() { return judge == null ? "-- Unassigned --" : "Hon. " + judge.lastName(); } 
+    }
+
+    private class PartyItem {
+        private InvolvedPartyDTO party;
+        public PartyItem(InvolvedPartyDTO party) { this.party = party; }
+        public InvolvedPartyDTO getParty() { return party; }
+        @Override public String toString() { return party == null ? "-- Unassigned --" : party.firstName() + " " + party.lastName(); } 
+    }
 }

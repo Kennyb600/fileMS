@@ -2,158 +2,186 @@ package vtdi.keniel.filems.gui;
 
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import javax.swing.*;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import vtdi.keniel.filems.dto.CourtCaseDTO;
 import vtdi.keniel.filems.dto.InvolvedPartyDTO;
 import vtdi.keniel.filems.dto.JudgeDTO;
 
 public class InsertCaseDialog extends JDialog {
 
-    private JTextField txtCaseNumber;
-    private JComboBox<JudgeDTO> cbJudge;
-    private JComboBox<InvolvedPartyDTO> cbApplicant;
-    private JComboBox<InvolvedPartyDTO> cbRespondent;
-    private JComboBox<InvolvedPartyDTO> cbChild;
-    private JTextField txtCourtOrder;
-    private JTextField txtOrderDate;
+    private static final Logger logger = LogManager.getLogger(InsertCaseDialog.class);
     
+    private CourtCaseDTO createdCase;
     private boolean approved = false;
-    private CourtCaseDTO createdCase = null;
+
+    private JTextField txtCaseNumber;
+    private JComboBox<JudgeItem> cmbJudge;
+    private JComboBox<PartyItem> cmbApplicant;
+    private JComboBox<PartyItem> cmbRespondent;
+    private JTextArea txtCourtOrder;
+    
+    private List<JudgeDTO> availableJudges;
+    private List<InvolvedPartyDTO> availableParties;
 
     public InsertCaseDialog(Window parent, List<JudgeDTO> judges, List<InvolvedPartyDTO> parties) {
-        super(parent, "File New Court Case", Dialog.ModalityType.APPLICATION_MODAL);
-        initComponents(judges, parties);
-        setSize(450, 400);
+        super(parent, "File New Court Case", ModalityType.APPLICATION_MODAL);
+        this.availableJudges = judges;
+        this.availableParties = parties;
+        
+        setSize(550, 600);
         setLocationRelativeTo(parent);
-        setResizable(false);
+        setLayout(new BorderLayout());
+
+        buildUI();
     }
 
-    private void initComponents(List<JudgeDTO> judges, List<InvolvedPartyDTO> parties) {
-        setLayout(new BorderLayout());
-        
-        JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 15));
-        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    private void buildUI() {
+        JPanel formPanel = new JPanel(new GridLayout(4, 2, 10, 20));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 10, 30));
 
-        // --- Case Number ---
-        formPanel.add(new JLabel("Case Number:"));
-        txtCaseNumber = new JTextField();
+        // 1. Case Number Generation
+        formPanel.add(new JLabel("Generated Case Number:"));
+        txtCaseNumber = new JTextField("ST-" + System.currentTimeMillis()); 
+        txtCaseNumber.setEditable(false); 
         formPanel.add(txtCaseNumber);
 
-        // --- Dropdowns setup ---
-        cbJudge = new JComboBox<>(judges.toArray(new JudgeDTO[0]));
-        cbJudge.setRenderer(createJudgeRenderer());
+        // 2. Judge Dropdown
+        formPanel.add(new JLabel("Presiding Judge:"));
+        JPanel pnlJudge = new JPanel(new BorderLayout(5, 0));
+        cmbJudge = new JComboBox<>();
+        cmbJudge.addItem(new JudgeItem(null)); 
+        for (JudgeDTO j : availableJudges) cmbJudge.addItem(new JudgeItem(j));
         
-        // Add a "null" option at index 0 for optional fields like Child
-        parties.add(0, null); 
-        InvolvedPartyDTO[] partyArray = parties.toArray(new InvolvedPartyDTO[0]);
+        AutoCompleteDecorator.decorate(cmbJudge); 
         
-        cbApplicant = new JComboBox<>(partyArray);
-        cbApplicant.setRenderer(createPartyRenderer());
+        pnlJudge.add(cmbJudge, BorderLayout.CENTER);
+        JButton btnAddJudge = new JButton("+");
+        btnAddJudge.addActionListener(e -> quickAddJudge());
+        pnlJudge.add(btnAddJudge, BorderLayout.EAST);
+        formPanel.add(pnlJudge);
+
+        // 3. Applicant Dropdown
+        formPanel.add(new JLabel("Applicant Name:"));
+        JPanel pnlApp = new JPanel(new BorderLayout(5, 0));
+        cmbApplicant = new JComboBox<>();
+        cmbApplicant.addItem(new PartyItem(null)); 
+        for (InvolvedPartyDTO p : availableParties) cmbApplicant.addItem(new PartyItem(p));
         
-        cbRespondent = new JComboBox<>(partyArray);
-        cbRespondent.setRenderer(createPartyRenderer());
+        AutoCompleteDecorator.decorate(cmbApplicant); 
         
-        cbChild = new JComboBox<>(partyArray);
-        cbChild.setRenderer(createPartyRenderer());
+        pnlApp.add(cmbApplicant, BorderLayout.CENTER);
+        JButton btnAddApp = new JButton("+");
+        btnAddApp.addActionListener(e -> quickAddParty(cmbApplicant));
+        pnlApp.add(btnAddApp, BorderLayout.EAST);
+        formPanel.add(pnlApp);
 
-        formPanel.add(new JLabel("Assign Judge:"));
-        formPanel.add(cbJudge);
+        // 4. Respondent Dropdown
+        formPanel.add(new JLabel("Respondent Name:"));
+        JPanel pnlResp = new JPanel(new BorderLayout(5, 0));
+        cmbRespondent = new JComboBox<>();
+        cmbRespondent.addItem(new PartyItem(null)); 
+        for (InvolvedPartyDTO p : availableParties) cmbRespondent.addItem(new PartyItem(p));
+        
+        AutoCompleteDecorator.decorate(cmbRespondent); 
+        
+        pnlResp.add(cmbRespondent, BorderLayout.CENTER);
+        JButton btnAddResp = new JButton("+");
+        btnAddResp.addActionListener(e -> quickAddParty(cmbRespondent));
+        pnlResp.add(btnAddResp, BorderLayout.EAST);
+        formPanel.add(pnlResp);
+        
+        add(formPanel, BorderLayout.NORTH);
 
-        formPanel.add(new JLabel("Applicant:"));
-        formPanel.add(cbApplicant);
+        // 5. Initial Status Area
+        JPanel orderPanel = new JPanel(new BorderLayout(0, 5));
+        orderPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 20, 30));
+        orderPanel.add(new JLabel("Initial Court Order / Status Summary:"), BorderLayout.NORTH);
+        
+        txtCourtOrder = new JTextArea("Case Filed. Awaiting Initial Hearing.");
+        txtCourtOrder.setLineWrap(true);
+        txtCourtOrder.setWrapStyleWord(true);
+        orderPanel.add(new JScrollPane(txtCourtOrder), BorderLayout.CENTER);
+        
+        add(orderPanel, BorderLayout.CENTER);
 
-        formPanel.add(new JLabel("Respondent:"));
-        formPanel.add(cbRespondent);
-
-        formPanel.add(new JLabel("Child (Optional):"));
-        formPanel.add(cbChild);
-
-        // --- Order & Date ---
-        formPanel.add(new JLabel("Initial Court Order:"));
-        txtCourtOrder = new JTextField();
-        formPanel.add(txtCourtOrder);
-
-        formPanel.add(new JLabel("Order Date (YYYY-MM-DD):"));
-        txtOrderDate = new JTextField();
-        formPanel.add(txtOrderDate);
-
-        add(formPanel, BorderLayout.CENTER);
-
-        // --- Buttons ---
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton btnSave = new JButton("File Case");
+        // 6. Action Buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
         JButton btnCancel = new JButton("Cancel");
-
-        btnSave.addActionListener(e -> processSave());
         btnCancel.addActionListener(e -> dispose());
-
-        buttonPanel.add(btnSave);
-        buttonPanel.add(btnCancel);
-        add(buttonPanel, BorderLayout.SOUTH);
         
-        getRootPane().setDefaultButton(btnSave);
+        JButton btnSave = new JButton("File Case");
+        btnSave.addActionListener(e -> saveChanges());
+
+        buttonPanel.add(btnCancel);
+        buttonPanel.add(btnSave);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private void processSave() {
-        String caseNum = txtCaseNumber.getText().trim();
-        String order = txtCourtOrder.getText().trim();
-        String dateStr = txtOrderDate.getText().trim();
+    // --- QUICK ADD WORKFLOWS ---
+    private void quickAddJudge() {
+        String lastName = JOptionPane.showInputDialog(this, "Enter New Judge's Last Name (e.g., Smith):");
+        if (lastName != null && !lastName.trim().isEmpty()) {
+            JudgeDTO newJudge = new JudgeDTO(999, "New", lastName); 
+            JudgeItem newItem = new JudgeItem(newJudge);
+            cmbJudge.addItem(newItem);
+            cmbJudge.setSelectedItem(newItem);
+            JOptionPane.showMessageDialog(this, "Judge Added Successfully!");
+        }
+    }
+
+    private void quickAddParty(JComboBox<PartyItem> targetDropdown) {
+        String fullName = JOptionPane.showInputDialog(this, "Enter Citizen's Full Name:");
+        if (fullName != null && !fullName.trim().isEmpty()) {
+            String[] parts = fullName.split(" ", 2);
+            String first = parts[0];
+            String last = parts.length > 1 ? parts[1] : "";
+            
+            // FIXED: Using LocalDate for the required 4th parameter
+            InvolvedPartyDTO newParty = new InvolvedPartyDTO(999, first, last, LocalDate.now());
+            PartyItem newItem = new PartyItem(newParty);
+            targetDropdown.addItem(newItem);
+            targetDropdown.setSelectedItem(newItem);
+            JOptionPane.showMessageDialog(this, "Citizen Added Successfully!");
+        }
+    }
+
+    private void saveChanges() {
+        JudgeDTO selectedJudge = ((JudgeItem) cmbJudge.getSelectedItem()).getJudge();
+        InvolvedPartyDTO selectedApplicant = ((PartyItem) cmbApplicant.getSelectedItem()).getParty();
+        InvolvedPartyDTO selectedRespondent = ((PartyItem) cmbRespondent.getSelectedItem()).getParty();
+
+        createdCase = new CourtCaseDTO(
+            txtCaseNumber.getText(),
+            selectedApplicant, 
+            selectedRespondent,
+            null, 
+            selectedJudge,
+            txtCourtOrder.getText(),
+            LocalDate.now() // FIXED: Using modern LocalDate instead of java.util.Date
+        );
         
-        JudgeDTO judge = (JudgeDTO) cbJudge.getSelectedItem();
-        InvolvedPartyDTO applicant = (InvolvedPartyDTO) cbApplicant.getSelectedItem();
-        InvolvedPartyDTO respondent = (InvolvedPartyDTO) cbRespondent.getSelectedItem();
-        InvolvedPartyDTO child = (InvolvedPartyDTO) cbChild.getSelectedItem();
-
-        if (caseNum.isEmpty() || order.isEmpty() || dateStr.isEmpty() || judge == null || applicant == null || respondent == null) {
-            JOptionPane.showMessageDialog(this, "Case Number, Judge, Applicant, Respondent, and Order details are required.", "Validation Error", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        try {
-            LocalDate orderDate = LocalDate.parse(dateStr);
-            createdCase = new CourtCaseDTO(caseNum, applicant, respondent, child, judge, order, orderDate);
-            approved = true;
-            dispose();
-        } catch (DateTimeParseException ex) {
-            JOptionPane.showMessageDialog(this, "Invalid Date Format. Please use YYYY-MM-DD.", "Validation Error", JOptionPane.WARNING_MESSAGE);
-        }
+        approved = true;
+        dispose();
     }
 
     public boolean isApproved() { return approved; }
     public CourtCaseDTO getCreatedCase() { return createdCase; }
 
-    // --- Custom Renderers to make dropdowns look pretty ---
-    
-    // FIX: Returned DefaultListCellRenderer directly
-    private DefaultListCellRenderer createJudgeRenderer() {
-        return new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof JudgeDTO judge) {
-                    setText("Hon. " + judge.firstName() + " " + judge.lastName());
-                }
-                return this;
-            }
-        };
+    private class JudgeItem {
+        private JudgeDTO judge;
+        public JudgeItem(JudgeDTO judge) { this.judge = judge; }
+        public JudgeDTO getJudge() { return judge; }
+        @Override public String toString() { return judge == null ? "-- Unassigned --" : "Hon. " + judge.lastName(); } 
     }
 
-    // FIX: Returned DefaultListCellRenderer directly
-    private DefaultListCellRenderer createPartyRenderer() {
-        return new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof InvolvedPartyDTO party) {
-                    setText(party.firstName() + " " + party.lastName() + " (ID: " + party.id() + ")");
-                } else {
-                    setText("--- None / Unassigned ---");
-                }
-                return this;
-            }
-        };
+    private class PartyItem {
+        private InvolvedPartyDTO party;
+        public PartyItem(InvolvedPartyDTO party) { this.party = party; }
+        public InvolvedPartyDTO getParty() { return party; }
+        @Override public String toString() { return party == null ? "-- Unassigned --" : party.firstName() + " " + party.lastName(); } 
     }
 }

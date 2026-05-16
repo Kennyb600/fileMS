@@ -1,100 +1,104 @@
 package vtdi.keniel.filems.gui;
 
+import com.formdev.flatlaf.FlatLightLaf; // Correct capitalization here
 import java.awt.*;
 import javax.swing.*;
-
-import com.formdev.flatlaf.FlatDarkLaf; 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LoginFrame extends JFrame {
-
+    
+    private static final Logger logger = LogManager.getLogger(LoginFrame.class);
     private JTextField txtUsername;
     private JPasswordField txtPassword;
 
     public LoginFrame() {
-        setTitle("FileMS - Secure Login");
-        setSize(400, 250);
+        setTitle("FileMS - Secure Access Gateway");
+        setSize(450, 350); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centers the window on the screen
-        setResizable(false);
-        
-        initComponents();
-    }
-
-    private void initComponents() {
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // --- Top Header Panel ---
-        JPanel headerPanel = new JPanel();
-        headerPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
-        JLabel lblTitle = new JLabel("Maintenance Dept FileMS");
-        lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        headerPanel.add(lblTitle);
-        add(headerPanel, BorderLayout.NORTH);
+        JPanel panel = new JPanel(new GridLayout(3, 2, 10, 25));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
-        // --- Center Form Panel ---
-        JPanel formPanel = new JPanel(new GridLayout(2, 2, 10, 15));
-        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
-
-        formPanel.add(new JLabel("Username:"));
+        JLabel lblUser = new JLabel("Registry Username:");
+        lblUser.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        panel.add(lblUser);
+        
         txtUsername = new JTextField();
-        formPanel.add(txtUsername);
+        txtUsername.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        panel.add(txtUsername);
 
-        formPanel.add(new JLabel("Password:"));
+        JLabel lblPass = new JLabel("Security Password:");
+        lblPass.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        panel.add(lblPass);
+        
         txtPassword = new JPasswordField();
-        formPanel.add(txtPassword);
+        txtPassword.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        panel.add(txtPassword);
 
-        add(formPanel, BorderLayout.CENTER);
+        JButton btnLogin = new JButton("submit");
+        btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        getRootPane().setDefaultButton(btnLogin); 
+        btnLogin.addActionListener(e -> authenticate());
+        
+        panel.add(new JLabel("")); // Spacer
+        panel.add(btnLogin);
 
-        // --- Bottom Button Panel ---
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        JButton btnLogin = new JButton("Login");
-        JButton btnCancel = new JButton("Cancel");
+        add(panel, BorderLayout.CENTER);
 
-        // Make the Login button slightly wider
-        btnLogin.setPreferredSize(new Dimension(100, 35));
-        btnCancel.setPreferredSize(new Dimension(100, 35));
-
-        // --- Login Logic ---
-        btnLogin.addActionListener(e -> {
-            String username = txtUsername.getText().trim();
-            String password = new String(txtPassword.getPassword());
-
-            // TODO: Replace this with a NetworkMessage to check your MySQL Database!
-            if ("admin".equals(username) && "admin123".equals(password)) {
-                // Success! Close the login screen and open the main dashboard
-                this.dispose(); 
-                SwingUtilities.invokeLater(() -> {
-                    new MainAppFrame().setVisible(true);
-                });
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password.", "Authentication Failed", JOptionPane.ERROR_MESSAGE);
-                txtPassword.setText(""); // Clear the password field on failure
-            }
-        });
-
-        btnCancel.addActionListener(e -> System.exit(0));
-
-        buttonPanel.add(btnLogin);
-        buttonPanel.add(btnCancel);
-        add(buttonPanel, BorderLayout.SOUTH);
-
-        // Pressing "Enter" on the keyboard will automatically click the Login button
-        getRootPane().setDefaultButton(btnLogin);
+        JLabel lblInfo = new JLabel("Demo Logins: admin/admin | super/super | clerk/clerk", SwingConstants.CENTER);
+        lblInfo.setForeground(Color.GRAY);
+        lblInfo.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+        add(lblInfo, BorderLayout.SOUTH);
     }
 
-    // --- We moved the Main Launcher here! ---
-    public static void main(String[] args) {
-        // Apply your modern theme!
-        try {
-            UIManager.setLookAndFeel(new FlatDarkLaf()); 
-            // If you didn't use FlatLaf, replace the line above with:
-            // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize theme.");
-        }
+    private void authenticate() {
+    String user = txtUsername.getText();
+    String pass = new String(txtPassword.getPassword());
+    String role = null;
 
-        SwingUtilities.invokeLater(() -> {
-            new LoginFrame().setVisible(true);
-        });
+    // Connect to the database to verify the user
+    String sql = "SELECT security_role FROM Registry_Users WHERE username = ? AND password = ?";
+    
+    try (java.sql.Connection conn = vtdi.keniel.filems.utils.DatabaseConnection.getConnection();
+         java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setString(1, user);
+        stmt.setString(2, pass); 
+        
+        try (java.sql.ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                role = rs.getString("security_role"); // Fetch the role from the DB!
+            }
+        }
+    } catch (Exception e) {
+        logger.error("Database connection failed during login", e);
+        JOptionPane.showMessageDialog(this, "Database Connection Error.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (role != null) {
+        logger.info("Database authentication successful. Granted role: " + role);
+        new MainAppFrame(role).setVisible(true);
+        this.dispose(); 
+    } else {
+        logger.warn("Failed unauthorized login attempt for username: " + user);
+        JOptionPane.showMessageDialog(this, "Invalid credentials. Access Denied.", "Security Alert", JOptionPane.ERROR_MESSAGE);
+        txtPassword.setText(""); 
+    }
+}
+
+    public static void main(String[] args) {
+        // ACTIVATE MODERN LIGHT GUI THEME BEFORE STARTING APP
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf()); // Correct capitalization here
+        } catch (Exception ex) {
+            logger.error("Failed to initialize modern FlatLaf theme.", ex);
+        }
+        
+        SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
     }
 }

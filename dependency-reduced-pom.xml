@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>vtdi.keniel.filems.gui.MainAppFrame</mainClass>
+                  <mainClass>vtdi.keniel.filems.gui.LoginFrame</mainClass>
                 </transformer>
               </transformers>
               <filters>
@@ -38,6 +38,13 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itext7-core</artifactId>
+      <version>7.2.5</version>
+      <type>pom</type>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-suite-engine</artifactId>
